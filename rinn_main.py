@@ -32,8 +32,6 @@ import time
 import sys
 import matplotlib.pyplot as plt
 # 设置matplotlib中文字体
-plt.rcParams['font.sans-serif'] = ['SimHei']  # 用来正常显示中文标签
-plt.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
 
 # 添加项目路径
 sys.path.append('c:/Users/GoODCaT/Desktop/papers/RINN')
@@ -307,17 +305,17 @@ print(f"平均每轮训练时间: {total_train_time/epochs:.2f}s")
 # 绘制损失曲线函数
 def plot_loss_curves(history, save_dir=None):
     """
-    绘制训练和验证过程中的损失曲线（去除前10个epoch的数据）
+    Plot training and validation loss curves (excluding the first 10 epochs)
     
-    参数:
-    history: 包含训练和验证损失历史的字典
-    save_dir: 保存图片的目录，如果为None则不保存
+    Parameters:
+    history: Dictionary containing training and validation loss history
+    save_dir: Directory to save the figure, if None, figure won't be saved
     """
-    # 去除前10个epoch的数据，从第11个epoch开始显示
-    start_epoch = 10  # 从第11个epoch开始（索引为10）
+    # Exclude the first 10 epochs, start from the 11th epoch
+    start_epoch = 10  # Start from epoch 11 (index 10)
     epochs = range(start_epoch + 1, len(history['train_total']) + 1)
     
-    # 获取从start_epoch开始的数据
+    # Get data starting from start_epoch
     train_total = history['train_total'][start_epoch:]
     val_total = history['val_total'][start_epoch:]
     train_Lx = history['train_Lx'][start_epoch:]
@@ -327,55 +325,55 @@ def plot_loss_curves(history, save_dir=None):
     train_Lz = history['train_Lz'][start_epoch:]
     val_Lz = history['val_Lz'][start_epoch:]
     
-    # 创建一个2x2的图像布局
+    # Create a 2x2 subplot layout
     fig, axs = plt.subplots(2, 2, figsize=(15, 12))
     
-    # 绘制总损失曲线
-    axs[0, 0].plot(epochs, train_total, 'b-', label='训练总损失')
-    axs[0, 0].plot(epochs, val_total, 'r-', label='验证总损失')
-    axs[0, 0].set_title('总损失变化趋势（从第11个epoch开始）')
+    # Plot total loss curve
+    axs[0, 0].plot(epochs, train_total, 'b-', label='Train Total Loss')
+    axs[0, 0].plot(epochs, val_total, 'r-', label='Val Total Loss')
+    axs[0, 0].set_title('Total Loss Trend (Starting from Epoch 11)')
     axs[0, 0].set_xlabel('Epochs')
-    axs[0, 0].set_ylabel('损失值')
+    axs[0, 0].set_ylabel('Loss Value')
     axs[0, 0].legend()
     axs[0, 0].grid(True, linestyle='--', alpha=0.7)
     
-    # 绘制Lx损失曲线
-    axs[0, 1].plot(epochs, train_Lx, 'b-', label='训练Lx')
-    axs[0, 1].plot(epochs, val_Lx, 'r-', label='验证Lx')
-    axs[0, 1].set_title('Lx损失变化趋势（从第11个epoch开始）')
+    # Plot Lx loss curve
+    axs[0, 1].plot(epochs, train_Lx, 'b-', label='Train Lx')
+    axs[0, 1].plot(epochs, val_Lx, 'r-', label='Val Lx')
+    axs[0, 1].set_title('Lx Loss Trend (Starting from Epoch 11)')
     axs[0, 1].set_xlabel('Epochs')
-    axs[0, 1].set_ylabel('Lx损失值')
+    axs[0, 1].set_ylabel('Lx Loss Value')
     axs[0, 1].legend()
     axs[0, 1].grid(True, linestyle='--', alpha=0.7)
     
-    # 绘制Ly损失曲线
-    axs[1, 0].plot(epochs, train_Ly, 'b-', label='训练Ly')
-    axs[1, 0].plot(epochs, val_Ly, 'r-', label='验证Ly')
-    axs[1, 0].set_title('Ly损失变化趋势（从第11个epoch开始）')
+    # Plot Ly loss curve
+    axs[1, 0].plot(epochs, train_Ly, 'b-', label='Train Ly')
+    axs[1, 0].plot(epochs, val_Ly, 'r-', label='Val Ly')
+    axs[1, 0].set_title('Ly Loss Trend (Starting from Epoch 11)')
     axs[1, 0].set_xlabel('Epochs')
-    axs[1, 0].set_ylabel('Ly损失值')
+    axs[1, 0].set_ylabel('Ly Loss Value')
     axs[1, 0].legend()
     axs[1, 0].grid(True, linestyle='--', alpha=0.7)
     
-    # 绘制Lz损失曲线
-    axs[1, 1].plot(epochs, train_Lz, 'b-', label='训练Lz')
-    axs[1, 1].plot(epochs, val_Lz, 'r-', label='验证Lz')
-    axs[1, 1].set_title('Lz损失变化趋势（从第11个epoch开始）')
+    # Plot Lz loss curve
+    axs[1, 1].plot(epochs, train_Lz, 'b-', label='Train Lz')
+    axs[1, 1].plot(epochs, val_Lz, 'r-', label='Val Lz')
+    axs[1, 1].set_title('Lz Loss Trend (Starting from Epoch 11)')
     axs[1, 1].set_xlabel('Epochs')
-    axs[1, 1].set_ylabel('Lz损失值')
+    axs[1, 1].set_ylabel('Lz Loss Value')
     axs[1, 1].legend()
     axs[1, 1].grid(True, linestyle='--', alpha=0.7)
     
     plt.tight_layout()
     
-    # 如果提供了保存目录，则保存图片
+    # If save directory is provided, save the figure
     if save_dir:
         os.makedirs(save_dir, exist_ok=True)
         save_path = os.path.join(save_dir, 'loss_curves.png')
         plt.savefig(save_path, dpi=300, bbox_inches='tight')
-        print(f"损失曲线已保存至: {save_path}")
+        print(f"Loss curves figure saved to: {save_path}")
     
-    # 显示图片
+    # Display the figure
     plt.show()
 
 # 创建一个单独的图像显示所有损失曲线在一个图上
@@ -415,18 +413,18 @@ def plot_all_losses(history, save_dir=None):
     plt.plot(epochs, val_Ly, 'r--', label='验证Ly')
     plt.plot(epochs, val_Lz, 'c--', label='验证Lz')
     
-    plt.title('所有损失曲线对比（从第11个epoch开始）')
+    plt.title('Comparison of All Loss Curves (Starting from Epoch 11)')
     plt.xlabel('Epochs')
-    plt.ylabel('损失值')
+    plt.ylabel('Loss Value')
     plt.legend()
     plt.grid(True, linestyle='--', alpha=0.7)
     
-    # 如果提供了保存目录，则保存图片
+    # If save directory is provided, save the figure
     if save_dir:
         os.makedirs(save_dir, exist_ok=True)
         save_path = os.path.join(save_dir, 'all_losses_comparison.png')
         plt.savefig(save_path, dpi=300, bbox_inches='tight')
-        print(f"所有损失对比图已保存至: {save_path}")
+        print(f"All losses comparison figure saved to: {save_path}")
     
     # 显示图片
     plt.show()

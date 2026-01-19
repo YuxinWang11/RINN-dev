@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import numpy as np
-from RINNmodel import RINNModel
+from R_INN_model import RINNModel
 
 # 论文中的损失函数：L_total = w1*Lz + w2*Lx + w3*Ly
 def calculate_loss(model, x, y, w1=1.0, w2=1.0, w3=1.0):

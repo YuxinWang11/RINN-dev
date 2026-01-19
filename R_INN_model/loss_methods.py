@@ -125,6 +125,60 @@ def nmse_loss(y_real: torch.Tensor, y_pred: torch.Tensor, eps: float = 1e-4) -> 
     
     return nmse
 
+def weighted_nmse_loss(y_real: torch.Tensor, y_pred: torch.Tensor, weights: torch.Tensor = None, eps: float = 1e-4) -> torch.Tensor:
+    """
+    带权重的NMSE损失函数，用于对特定频率点（如尖锐谷值）给予更高权重
+    
+    参数:
+        y_real: torch.Tensor - 真实性能值张量，形状为(batch_size, y_dim)
+        y_pred: torch.Tensor - 预测性能值张量，形状必须与y_real相同
+        weights: torch.Tensor - 权重张量，形状为(y_dim,)或(1, y_dim)，如果为None则使用默认权重策略
+        eps: float - 数值稳定项，默认1e-4，避免分母为零
+    
+    返回:
+        torch.Tensor - 标量张量，表示加权NMSE损失值，支持反向传播
+    """
+    # 校验输入形状一致性，确保逐样本对应
+    if y_real.shape != y_pred.shape:
+        raise ValueError(f"y_real和y_pred的形状必须一致，得到y_real形状: {y_real.shape}，y_pred形状: {y_pred.shape}")
+    
+    # 获取批次大小和频率点数
+    batch_size, y_dim = y_real.shape
+    
+    # 如果没有提供权重，则自动生成权重
+    if weights is None:
+        # 默认策略：对y_real中较低的值（谷值）给予更高权重
+        # 计算每个频率点的平均绝对值（绝对值越大，说明该频率点的信号越强）
+        avg_abs_y = torch.mean(torch.abs(y_real), dim=0)
+        
+        # 计算谷值权重：y值越低（绝对值越大的负值），权重越高
+        # 使用指数函数生成权重，确保谷值区域获得更高权重
+        # 对avg_abs_y进行归一化，使其在0-1之间
+        normalized_avg = avg_abs_y / (torch.max(avg_abs_y) + eps)
+        
+        # 生成权重：谷值区域（y_real较低的点）权重更高
+        # 这里使用exp(2*normalized_avg)来放大差异，2是可调参数
+        weights = torch.exp(2 * normalized_avg)
+        
+        # 归一化权重，使其总和为y_dim，保持与普通NMSE的量级一致
+        weights = weights * y_dim / torch.sum(weights)
+    
+    # 确保权重形状正确
+    if weights.dim() == 1:
+        weights = weights.unsqueeze(0)  # 扩展为(1, y_dim)以便广播
+    
+    # 计算加权MSE
+    squared_errors = (y_real - y_pred) ** 2
+    weighted_mse = torch.mean(squared_errors * weights)
+    
+    # 使用RMS（均方根）作为归一化基准，更稳定
+    real_rms = torch.sqrt(torch.mean(y_real ** 2) + eps)
+    
+    # 计算加权NMSE
+    weighted_nmse = weighted_mse / (real_rms ** 2 + eps)
+    
+    return weighted_nmse
+
 # 示例用法（如果直接运行此文件）
 if __name__ == "__main__":
     print("=== MMD损失测试 ===")

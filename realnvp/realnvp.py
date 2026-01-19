@@ -355,10 +355,10 @@ class RealNVP(nn.Module):
             z_part_dim = max(1, int(stage_input_dim * ratio_toZ_after_flowstage))
             h_prime_dim = stage_input_dim - z_part_dim
             
-            # 确保拆分后维度都大于0
-            if h_prime_dim <= 0:
-                z_part_dim = stage_input_dim - 1
-                h_prime_dim = 1
+            # 确保拆分后维度都大于0且h_prime_dim至少为2
+            if h_prime_dim < 2:
+                z_part_dim = stage_input_dim - 2
+                h_prime_dim = 2
                 print(f"警告：阶段 {i+1} 维度拆分调整为 z_part_dim={z_part_dim}, h_prime_dim={h_prime_dim}")
             
             # 计算FlowCell中AffineCoupling的x1维度

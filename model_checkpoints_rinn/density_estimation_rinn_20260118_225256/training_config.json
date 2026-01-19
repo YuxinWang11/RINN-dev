@@ -1,0 +1,28 @@
+{
+  "timestamp": "20260118_225256",
+  "model_config": {
+    "input_dim": 106,
+    "hidden_dim": 64,
+    "num_blocks": 8,
+    "num_stages": 3,
+    "num_cycles_per_stage": 1
+  },
+  "training_params": {
+    "batch_size": 8,
+    "learning_rate": 0.0001,
+    "weight_decay": 1e-05,
+    "clip_value": 0.5,
+    "num_epochs": 100,
+    "loss_weights": {
+      "weight_z": 1.0
+    }
+  },
+  "data_info": {
+    "train_samples": 884,
+    "val_samples": 222,
+    "x_dim": 5,
+    "y_dim": 101,
+    "xy_dim": 106,
+    "z_dim": 50
+  }
+}

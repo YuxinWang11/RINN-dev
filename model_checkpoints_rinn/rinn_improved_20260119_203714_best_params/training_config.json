@@ -1,0 +1,40 @@
+{
+  "dims": {
+    "x_dim": 5,
+    "y_dim": 101,
+    "z_dim": 5,
+    "padding_dim": 101,
+    "left_input_dim": 106,
+    "right_input_dim": 106,
+    "ratio_x1_x2_inAffine": 0.04716981132075472,
+    "ratio_toZ_after_flowstage": 0.3
+  },
+  "best_params": {
+    "normalization_method": "robust",
+    "hidden_dim": 56,
+    "num_blocks": 5,
+    "num_stages": 2,
+    "batch_size": 32,
+    "learning_rate": 0.0005,
+    "weight_decay": 1e-05,
+    "clip_value": 0.5,
+    "num_epochs": 150,
+    "weight_y": 1.5,
+    "weight_x": 0.5,
+    "weight_z": 0.3
+  },
+  "weights": [
+    1.5,
+    0.5,
+    0.3
+  ],
+  "hyperparams": [
+    32,
+    0.0005,
+    1e-05,
+    0.5,
+    150,
+    1
+  ],
+  "timestamp": "20260119_203714"
+}

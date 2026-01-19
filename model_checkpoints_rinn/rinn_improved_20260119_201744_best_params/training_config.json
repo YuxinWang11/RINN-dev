@@ -1,0 +1,38 @@
+{
+  "dims": {
+    "x_dim": 5,
+    "y_dim": 101,
+    "z_dim": 5,
+    "padding_dim": 101,
+    "left_input_dim": 106,
+    "right_input_dim": 106,
+    "ratio_x1_x2_inAffine": 0.04716981132075472,
+    "ratio_toZ_after_flowstage": 0.3
+  },
+  "best_params": {
+    "normalization_method": "minmax",
+    "hidden_dim": 80,
+    "num_blocks": 3,
+    "num_stages": 4,
+    "batch_size": 32,
+    "learning_rate": 0.0005,
+    "weight_decay": 0.001,
+    "clip_value": 0.7,
+    "num_epochs": 250,
+    "weight_y": 1.0,
+    "weight_x": 0.5,
+    "weight_z": 0.1
+  },
+  "weights": {
+    "weight_y": 1.0,
+    "weight_x": 0.5,
+    "weight_z": 0.1
+  },
+  "hyperparams": {
+    "learning_rate": 0.0005,
+    "weight_decay": 0.001,
+    "clip_value": 0.7,
+    "num_epochs": 250
+  },
+  "timestamp": "20260119_201744"
+}
