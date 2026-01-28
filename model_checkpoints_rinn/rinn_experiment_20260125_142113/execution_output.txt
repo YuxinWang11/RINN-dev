@@ -1,0 +1,374 @@
+返回码: 0
+
+标准输出:
+从配置文件加载参数: model_checkpoints_rinn/rinn_experiment_20260125_142113/experiment_config.json
+配置加载完成!
+本次训练输出文件夹: model_checkpoints_rinn/rinn_correct_structure_20260125_142115
+未检测到GPU设备，使用CPU进行计算
+
+=== 加载数据 ===
+X特征形状: (1106, 5)
+X特征示例 (第一个样本): [3.11117 3.65863 2.9958  3.35774 3.01181]
+频率点数: 101
+频率范围: 10.5 GHz - 11.5 GHz
+Y数据形状: (1106, 101)
+归一化方法: robust
+X特征归一化后均值: 0.030988, 标准差: 0.671972
+Y数据归一化后均值: -0.221347, 标准差: 0.757983
+X特征是否包含NaN: False
+X特征是否包含无穷大: False
+Y数据是否包含NaN: False
+Y数据是否包含无穷大: False
+X特征归一化后最小值: -10.000013, 最大值: 9.479999
+Y数据归一化后最小值: -3.794505, 最大值: 3.024901
+
+=== 维度处理与数据结构 ===
+X维度: 5, Y维度: 101, Z维度: 5
+左侧输入维度: 106 (X: 5 + 零填充: 101)
+右侧输入维度: 106 (Y: 101 + Z: 5)
+总输入/输出维度: 106 (左右侧维度相同)
+Affine coupling比率: 0.04716981132075472
+
+数据集划分:
+  训练集: 884 样本
+  验证集: 222 样本
+
+=== 模型定义 ===
+模型输入/输出维度: 106
+左侧输入: X(5) + 零填充(101)
+右侧输入: Y(101) + Z(5)
+模型参数总数: 1339077
+
+=== 训练配置 ===
+开始训练...
+Epoch [1/100], Train Loss: 3.530243, Y Loss: 1.682561, X Loss: 0.518807, Z Loss: 0.246578, Time: 2.90s
+          Val Loss: 0.834859, Y Loss: 0.367334, X Loss: 0.178929, Z Loss: 0.158198, Time: 0.15s
+  -> 保存最佳模型 (Val Loss: 0.834859)
+Epoch [2/100], Train Loss: 0.676628, Y Loss: 0.311585, X Loss: 0.085836, Z Loss: 0.138995, Time: 2.66s
+          Val Loss: 0.624495, Y Loss: 0.230382, X Loss: 0.315786, Z Loss: 0.096255, Time: 0.15s
+  -> 保存最佳模型 (Val Loss: 0.624495)
+Epoch [3/100], Train Loss: 0.516723, Y Loss: 0.229581, X Loss: 0.082592, Z Loss: 0.130745, Time: 2.77s
+          Val Loss: 0.477136, Y Loss: 0.188624, X Loss: 0.159127, Z Loss: 0.130623, Time: 0.15s
+  -> 保存最佳模型 (Val Loss: 0.477136)
+Epoch [4/100], Train Loss: 0.429727, Y Loss: 0.192164, X Loss: 0.069067, Z Loss: 0.100273, Time: 2.70s
+          Val Loss: 0.384718, Y Loss: 0.158161, X Loss: 0.134912, Z Loss: 0.055853, Time: 0.14s
+  -> 保存最佳模型 (Val Loss: 0.384718)
+Epoch [5/100], Train Loss: 34492252010216.902344, Y Loss: 0.169403, X Loss: 68984504020433.070312, Z Loss: 0.110302, Time: 2.68s
+          Val Loss: 0.345000, Y Loss: 0.158154, X Loss: 0.058297, Z Loss: 0.051192, Time: 0.15s
+  -> 保存最佳模型 (Val Loss: 0.345000)
+Epoch [6/100], Train Loss: 45407633314955573329920.000000, Y Loss: 2930.447845, X Loss: 90815266629911146659840.000000, Z Loss: 0.108231, Time: 2.73s
+          Val Loss: 0.401839, Y Loss: 0.131263, X Loss: 0.233176, Z Loss: 0.119505, Time: 0.16s
+Epoch [7/100], Train Loss: 7930698688839619182592.000000, Y Loss: 3163.569032, X Loss: 15861397377679238365184.000000, Z Loss: 0.096533, Time: 2.76s
+          Val Loss: 0.328982, Y Loss: 0.145152, X Loss: 0.056989, Z Loss: 0.082328, Time: 0.15s
+  -> 保存最佳模型 (Val Loss: 0.328982)
+Epoch [8/100], Train Loss: 15597399272746647552.000000, Y Loss: 16173.200887, X Loss: 31194798545493295104.000000, Z Loss: 0.093825, Time: 2.70s
+          Val Loss: 0.243986, Y Loss: 0.113019, X Loss: 0.031517, Z Loss: 0.044976, Time: 0.15s
+  -> 保存最佳模型 (Val Loss: 0.243986)
+Epoch [9/100], Train Loss: 29420454259912127545344.000000, Y Loss: 5172.820886, X Loss: 58840908519824255090688.000000, Z Loss: 0.073905, Time: 2.70s
+          Val Loss: 0.271498, Y Loss: 0.112194, X Loss: 0.064104, Z Loss: 0.087592, Time: 0.15s
+Epoch [10/100], Train Loss: 109392640827669449015296.000000, Y Loss: 1313.318311, X Loss: 218785281655338898030592.000000, Z Loss: 0.061136, Time: 2.82s
+          Val Loss: 0.325629, Y Loss: 0.122216, X Loss: 0.122300, Z Loss: 0.107564, Time: 0.33s
+Epoch [11/100], Train Loss: 3965014537474520576.000000, Y Loss: 3.168632, X Loss: 7930029074949041152.000000, Z Loss: 0.077059, Time: 2.74s
+          Val Loss: 0.270941, Y Loss: 0.115255, X Loss: 0.044323, Z Loss: 0.099317, Time: 0.15s
+Epoch [12/100], Train Loss: 181041382924447168.000000, Y Loss: 8.404557, X Loss: 362082765848894336.000000, Z Loss: 0.075062, Time: 2.65s
+          Val Loss: 0.222127, Y Loss: 0.089949, X Loss: 0.056351, Z Loss: 0.076831, Time: 0.15s
+  -> 保存最佳模型 (Val Loss: 0.222127)
+Epoch [13/100], Train Loss: 186173863934633120.000000, Y Loss: 2.115678, X Loss: 372347727869266240.000000, Z Loss: 0.062695, Time: 2.72s
+          Val Loss: 0.263965, Y Loss: 0.109272, X Loss: 0.069957, Z Loss: 0.071233, Time: 0.15s
+Epoch [14/100], Train Loss: 714538679104251008.000000, Y Loss: 2.561420, X Loss: 1429077358208502016.000000, Z Loss: 0.088693, Time: 2.83s
+          Val Loss: 0.219530, Y Loss: 0.095631, X Loss: 0.046584, Z Loss: 0.048463, Time: 0.15s
+  -> 保存最佳模型 (Val Loss: 0.219530)
+Epoch [15/100], Train Loss: 8945186676221074.000000, Y Loss: 29.441757, X Loss: 17890373352442148.000000, Z Loss: 0.070607, Time: 2.67s
+          Val Loss: 0.209592, Y Loss: 0.090557, X Loss: 0.042619, Z Loss: 0.054080, Time: 0.15s
+  -> 保存最佳模型 (Val Loss: 0.209592)
+Epoch [16/100], Train Loss: 12299467167217372.000000, Y Loss: 6.308029, X Loss: 24598934334434744.000000, Z Loss: 0.061605, Time: 2.80s
+          Val Loss: 0.206164, Y Loss: 0.091068, X Loss: 0.029798, Z Loss: 0.060789, Time: 0.16s
+  -> 保存最佳模型 (Val Loss: 0.206164)
+Epoch [17/100], Train Loss: 77554666231936736.000000, Y Loss: 9.478907, X Loss: 155109332463873472.000000, Z Loss: 0.065930, Time: 2.83s
+          Val Loss: 0.234308, Y Loss: 0.110551, X Loss: 0.024888, Z Loss: 0.039389, Time: 0.15s
+Epoch [18/100], Train Loss: 163520813465600.062500, Y Loss: 18.235802, X Loss: 327041626931200.000000, Z Loss: 0.084546, Time: 2.86s
+          Val Loss: 0.200210, Y Loss: 0.087982, X Loss: 0.040696, Z Loss: 0.042318, Time: 0.16s
+  -> 保存最佳模型 (Val Loss: 0.200210)
+Epoch [19/100], Train Loss: 1665573996836.729736, Y Loss: 1.079826, X Loss: 3331147993673.161133, Z Loss: 0.055294, Time: 2.75s
+          Val Loss: 0.170917, Y Loss: 0.082439, X Loss: 0.013210, Z Loss: 0.025597, Time: 0.16s
+  -> 保存最佳模型 (Val Loss: 0.170917)
+Epoch [20/100], Train Loss: 13745907139332651008.000000, Y Loss: 3.221856, X Loss: 27491814278665302016.000000, Z Loss: 0.070639, Time: 2.89s
+          Val Loss: 0.190392, Y Loss: 0.086943, X Loss: 0.013409, Z Loss: 0.061655, Time: 0.15s
+Epoch [21/100], Train Loss: 358885660913228672.000000, Y Loss: 19.637446, X Loss: 717771321826457344.000000, Z Loss: 0.073657, Time: 2.72s
+          Val Loss: 0.218219, Y Loss: 0.081461, X Loss: 0.044854, Z Loss: 0.136722, Time: 0.15s
+Epoch [22/100], Train Loss: 103609238610996656.000000, Y Loss: 0.265808, X Loss: 207218477221993312.000000, Z Loss: 0.056539, Time: 2.77s
+          Val Loss: 0.188306, Y Loss: 0.080409, X Loss: 0.045136, Z Loss: 0.043202, Time: 0.15s
+Epoch [23/100], Train Loss: 16162817572864.144531, Y Loss: 0.158708, X Loss: 32325635145728.007812, Z Loss: 0.052142, Time: 2.82s
+          Val Loss: 0.175814, Y Loss: 0.082678, X Loss: 0.013663, Z Loss: 0.039648, Time: 0.15s
+Epoch [24/100], Train Loss: 11022665641105555456.000000, Y Loss: 137.335468, X Loss: 22045331282211110912.000000, Z Loss: 0.068681, Time: 2.74s
+          Val Loss: 0.202356, Y Loss: 0.082227, X Loss: 0.061389, Z Loss: 0.051432, Time: 0.15s
+Epoch [25/100], Train Loss: 0.171786, Y Loss: 0.071680, X Loss: 0.030251, Z Loss: 0.068228, Time: 2.75s
+          Val Loss: 0.174651, Y Loss: 0.072312, X Loss: 0.013631, Z Loss: 0.101476, Time: 0.15s
+Epoch [26/100], Train Loss: 585311089574714736640.000000, Y Loss: 1674.405777, X Loss: 1170622179149429473280.000000, Z Loss: 0.058522, Time: 2.76s
+          Val Loss: 0.166385, Y Loss: 0.070561, X Loss: 0.015390, Z Loss: 0.082078, Time: 0.15s
+  -> 保存最佳模型 (Val Loss: 0.166385)
+Epoch [27/100], Train Loss: 29046353335306532.000000, Y Loss: 133.544973, X Loss: 58092706670613064.000000, Z Loss: 0.062920, Time: 2.82s
+          Val Loss: 0.191560, Y Loss: 0.085998, X Loss: 0.018140, Z Loss: 0.063645, Time: 0.15s
+Epoch [28/100], Train Loss: 251302793108333.781250, Y Loss: 25.236301, X Loss: 502605586216667.437500, Z Loss: 0.052499, Time: 2.74s
+          Val Loss: 0.172830, Y Loss: 0.074708, X Loss: 0.013690, Z Loss: 0.080132, Time: 0.16s
+Epoch [29/100], Train Loss: 445581995690276544.000000, Y Loss: 9.348263, X Loss: 891163991380553088.000000, Z Loss: 0.054322, Time: 2.79s
+          Val Loss: 0.167676, Y Loss: 0.069546, X Loss: 0.011204, Z Loss: 0.099787, Time: 0.15s
+Epoch [30/100], Train Loss: 191429117198541984.000000, Y Loss: 291.802774, X Loss: 382858234397083968.000000, Z Loss: 0.054103, Time: 2.75s
+          Val Loss: 0.182831, Y Loss: 0.076387, X Loss: 0.016394, Z Loss: 0.098329, Time: 0.15s
+Epoch [31/100], Train Loss: 73851651077851.562500, Y Loss: 11.612452, X Loss: 147703302155702.843750, Z Loss: 0.050611, Time: 2.80s
+          Val Loss: 0.177220, Y Loss: 0.078501, X Loss: 0.015505, Z Loss: 0.067716, Time: 0.15s
+Epoch [32/100], Train Loss: 15843318311157760.000000, Y Loss: 3.884029, X Loss: 31686636622315520.000000, Z Loss: 0.088366, Time: 2.76s
+          Val Loss: 0.210086, Y Loss: 0.084851, X Loss: 0.035371, Z Loss: 0.103945, Time: 0.15s
+Epoch [33/100], Train Loss: 222267874663277.781250, Y Loss: 0.938140, X Loss: 444535749326555.437500, Z Loss: 0.048771, Time: 2.78s
+          Val Loss: 0.209124, Y Loss: 0.080798, X Loss: 0.023522, Z Loss: 0.146159, Time: 0.15s
+Epoch [34/100], Train Loss: 3642131653441243.500000, Y Loss: 497.341444, X Loss: 7284263306882487.000000, Z Loss: 0.055968, Time: 2.82s
+          Val Loss: 0.165684, Y Loss: 0.071361, X Loss: 0.029967, Z Loss: 0.050382, Time: 0.15s
+  -> 保存最佳模型 (Val Loss: 0.165684)
+Epoch [35/100], Train Loss: 120072490253550469120.000000, Y Loss: 176.761107, X Loss: 240144980507100938240.000000, Z Loss: 0.063654, Time: 2.67s
+          Val Loss: 0.144101, Y Loss: 0.062032, X Loss: 0.025192, Z Loss: 0.045482, Time: 0.15s
+  -> 保存最佳模型 (Val Loss: 0.144101)
+Epoch [36/100], Train Loss: 2389286674449601024.000000, Y Loss: 662.787404, X Loss: 4778573348899202048.000000, Z Loss: 0.064801, Time: 2.72s
+          Val Loss: 0.154411, Y Loss: 0.064331, X Loss: 0.029910, Z Loss: 0.057426, Time: 0.15s
+Epoch [37/100], Train Loss: 2604222434808393.000000, Y Loss: 12.930747, X Loss: 5208444869616786.000000, Z Loss: 0.079243, Time: 2.74s
+          Val Loss: 0.176297, Y Loss: 0.068493, X Loss: 0.031260, Z Loss: 0.101765, Time: 0.15s
+Epoch [38/100], Train Loss: 17036211117883392.000000, Y Loss: 25.108156, X Loss: 34072422235766784.000000, Z Loss: 0.058737, Time: 2.69s
+          Val Loss: 0.153555, Y Loss: 0.065353, X Loss: 0.023423, Z Loss: 0.058907, Time: 0.15s
+Epoch [39/100], Train Loss: 84157650782126080.000000, Y Loss: 52.977639, X Loss: 168315301564252160.000000, Z Loss: 0.068360, Time: 2.65s
+          Val Loss: 0.190817, Y Loss: 0.070483, X Loss: 0.036749, Z Loss: 0.128413, Time: 0.15s
+Epoch [40/100], Train Loss: 7159357067980215.000000, Y Loss: 295.445764, X Loss: 14318714135960430.000000, Z Loss: 0.066532, Time: 2.83s
+          Val Loss: 0.144095, Y Loss: 0.065171, X Loss: 0.015044, Z Loss: 0.042494, Time: 0.15s
+  -> 保存最佳模型 (Val Loss: 0.144095)
+Epoch [41/100], Train Loss: 1980090623122.394775, Y Loss: 12.421205, X Loss: 3960181246244.592285, Z Loss: 0.056412, Time: 2.70s
+          Val Loss: 0.172730, Y Loss: 0.063977, X Loss: 0.022060, Z Loss: 0.133811, Time: 0.17s
+Epoch [42/100], Train Loss: 0.137055, Y Loss: 0.054707, X Loss: 0.029556, Z Loss: 0.061114, Time: 2.76s
+          Val Loss: 0.139083, Y Loss: 0.061217, X Loss: 0.023404, Z Loss: 0.036895, Time: 0.15s
+  -> 保存最佳模型 (Val Loss: 0.139083)
+Epoch [43/100], Train Loss: 0.120303, Y Loss: 0.047878, X Loss: 0.031812, Z Loss: 0.044765, Time: 2.73s
+          Val Loss: 0.144780, Y Loss: 0.066765, X Loss: 0.013258, Z Loss: 0.037662, Time: 0.15s
+Epoch [44/100], Train Loss: 0.117222, Y Loss: 0.048901, X Loss: 0.022999, Z Loss: 0.042700, Time: 2.85s
+          Val Loss: 0.151376, Y Loss: 0.063998, X Loss: 0.035038, Z Loss: 0.040868, Time: 0.16s
+Epoch [45/100], Train Loss: 0.111337, Y Loss: 0.046939, X Loss: 0.020340, Z Loss: 0.039941, Time: 2.77s
+          Val Loss: 0.146932, Y Loss: 0.062802, X Loss: 0.015646, Z Loss: 0.065949, Time: 0.16s
+Epoch [46/100], Train Loss: 0.115431, Y Loss: 0.042980, X Loss: 0.029063, Z Loss: 0.064129, Time: 2.77s
+          Val Loss: 0.141571, Y Loss: 0.060044, X Loss: 0.025134, Z Loss: 0.049734, Time: 0.16s
+Epoch [47/100], Train Loss: 0.101496, Y Loss: 0.043906, X Loss: 0.018497, Z Loss: 0.029420, Time: 2.80s
+          Val Loss: 0.140804, Y Loss: 0.057488, X Loss: 0.013466, Z Loss: 0.082810, Time: 0.15s
+Epoch [48/100], Train Loss: 0.114143, Y Loss: 0.045032, X Loss: 0.033292, Z Loss: 0.039786, Time: 2.77s
+          Val Loss: 0.134030, Y Loss: 0.063997, X Loss: 0.015594, Z Loss: 0.015462, Time: 0.15s
+  -> 保存最佳模型 (Val Loss: 0.134030)
+Epoch [49/100], Train Loss: 0.113702, Y Loss: 0.045286, X Loss: 0.023278, Z Loss: 0.053399, Time: 2.80s
+          Val Loss: 0.163283, Y Loss: 0.063567, X Loss: 0.054326, Z Loss: 0.051145, Time: 0.15s
+Epoch [50/100], Train Loss: 0.110996, Y Loss: 0.043015, X Loss: 0.020388, Z Loss: 0.063580, Time: 2.78s
+          Val Loss: 0.158486, Y Loss: 0.067487, X Loss: 0.027667, Z Loss: 0.054756, Time: 0.16s
+Epoch [51/100], Train Loss: 0.103423, Y Loss: 0.042455, X Loss: 0.021326, Z Loss: 0.040322, Time: 2.75s
+          Val Loss: 0.151363, Y Loss: 0.060890, X Loss: 0.030954, Z Loss: 0.067314, Time: 0.15s
+Epoch [52/100], Train Loss: 0.101272, Y Loss: 0.039901, X Loss: 0.014764, Z Loss: 0.060263, Time: 2.76s
+          Val Loss: 0.139691, Y Loss: 0.055223, X Loss: 0.020560, Z Loss: 0.081622, Time: 0.16s
+Epoch [53/100], Train Loss: 0.208801, Y Loss: 0.039992, X Loss: 0.235460, Z Loss: 0.050288, Time: 2.76s
+          Val Loss: 0.146210, Y Loss: 0.058508, X Loss: 0.022694, Z Loss: 0.078989, Time: 0.15s
+Epoch [54/100], Train Loss: 1.018069, Y Loss: 0.040058, X Loss: 1.839248, Z Loss: 0.074445, Time: 2.86s
+          Val Loss: 0.124227, Y Loss: 0.056650, X Loss: 0.013447, Z Loss: 0.032896, Time: 0.15s
+  -> 保存最佳模型 (Val Loss: 0.124227)
+Epoch [55/100], Train Loss: 0.098491, Y Loss: 0.039831, X Loss: 0.016235, Z Loss: 0.048982, Time: 2.85s
+          Val Loss: 0.129266, Y Loss: 0.057324, X Loss: 0.013393, Z Loss: 0.045508, Time: 0.15s
+Epoch [56/100], Train Loss: 0.095035, Y Loss: 0.037936, X Loss: 0.012779, Z Loss: 0.055223, Time: 2.71s
+          Val Loss: 0.127025, Y Loss: 0.053252, X Loss: 0.017655, Z Loss: 0.056729, Time: 0.16s
+Epoch [57/100], Train Loss: 0.100567, Y Loss: 0.039080, X Loss: 0.013078, Z Loss: 0.065921, Time: 2.82s
+          Val Loss: 0.124032, Y Loss: 0.057644, X Loss: 0.010900, Z Loss: 0.030196, Time: 0.15s
+  -> 保存最佳模型 (Val Loss: 0.124032)
+Epoch [58/100], Train Loss: 0.094132, Y Loss: 0.038389, X Loss: 0.011042, Z Loss: 0.052242, Time: 2.87s
+          Val Loss: 0.146430, Y Loss: 0.064450, X Loss: 0.017986, Z Loss: 0.049941, Time: 0.16s
+Epoch [59/100], Train Loss: 0.563730, Y Loss: 0.035163, X Loss: 0.965117, Z Loss: 0.047869, Time: 2.74s
+          Val Loss: 0.126256, Y Loss: 0.056558, X Loss: 0.015856, Z Loss: 0.036223, Time: 0.15s
+Epoch [60/100], Train Loss: 0.104851, Y Loss: 0.041663, X Loss: 0.024739, Z Loss: 0.044410, Time: 2.77s
+          Val Loss: 0.143492, Y Loss: 0.058744, X Loss: 0.033683, Z Loss: 0.050120, Time: 0.16s
+Epoch [61/100], Train Loss: 0.092722, Y Loss: 0.035762, X Loss: 0.023880, Z Loss: 0.042783, Time: 2.81s
+          Val Loss: 0.135381, Y Loss: 0.059674, X Loss: 0.019131, Z Loss: 0.041448, Time: 0.16s
+Epoch [62/100], Train Loss: 0.100396, Y Loss: 0.036341, X Loss: 0.023489, Z Loss: 0.065347, Time: 3.16s
+          Val Loss: 0.122019, Y Loss: 0.052340, X Loss: 0.015618, Z Loss: 0.049215, Time: 0.14s
+  -> 保存最佳模型 (Val Loss: 0.122019)
+Epoch [63/100], Train Loss: 0.086835, Y Loss: 0.035257, X Loss: 0.015218, Z Loss: 0.040789, Time: 3.23s
+          Val Loss: 0.125210, Y Loss: 0.058829, X Loss: 0.012904, Z Loss: 0.023278, Time: 0.19s
+Epoch [64/100], Train Loss: 0.086339, Y Loss: 0.032725, X Loss: 0.018572, Z Loss: 0.049586, Time: 3.70s
+          Val Loss: 0.151104, Y Loss: 0.053653, X Loss: 0.023142, Z Loss: 0.125306, Time: 0.15s
+Epoch [65/100], Train Loss: 55547.464625, Y Loss: 0.034078, X Loss: 111094.748757, Z Loss: 0.081218, Time: 2.69s
+          Val Loss: 0.124860, Y Loss: 0.053666, X Loss: 0.018108, Z Loss: 0.046133, Time: 0.15s
+Epoch [66/100], Train Loss: 10021738203.510319, Y Loss: 0.036604, X Loss: 20043476406.870342, Z Loss: 0.043946, Time: 2.70s
+          Val Loss: 0.128332, Y Loss: 0.051259, X Loss: 0.027515, Z Loss: 0.057278, Time: 0.15s
+Epoch [67/100], Train Loss: 0.123486, Y Loss: 0.040795, X Loss: 0.054484, Z Loss: 0.062446, Time: 2.74s
+          Val Loss: 0.130046, Y Loss: 0.057990, X Loss: 0.017367, Z Loss: 0.037272, Time: 0.15s
+Epoch [68/100], Train Loss: 0.663831, Y Loss: 0.039338, X Loss: 1.146298, Z Loss: 0.053133, Time: 2.69s
+          Val Loss: 0.137795, Y Loss: 0.056655, X Loss: 0.026554, Z Loss: 0.056244, Time: 0.15s
+Epoch [69/100], Train Loss: 0.110819, Y Loss: 0.043498, X Loss: 0.018410, Z Loss: 0.063222, Time: 2.66s
+          Val Loss: 0.124901, Y Loss: 0.056773, X Loss: 0.019270, Z Loss: 0.024658, Time: 0.15s
+Epoch [70/100], Train Loss: 0.083750, Y Loss: 0.032742, X Loss: 0.012846, Z Loss: 0.050393, Time: 2.72s
+          Val Loss: 0.122893, Y Loss: 0.048850, X Loss: 0.011827, Z Loss: 0.080547, Time: 0.15s
+Epoch [71/100], Train Loss: 0.083836, Y Loss: 0.031561, X Loss: 0.015720, Z Loss: 0.053367, Time: 2.70s
+          Val Loss: 0.143215, Y Loss: 0.058061, X Loss: 0.020645, Z Loss: 0.075256, Time: 0.15s
+Epoch [72/100], Train Loss: 0.113029, Y Loss: 0.036003, X Loss: 0.062618, Z Loss: 0.044385, Time: 3.31s
+          Val Loss: 0.129247, Y Loss: 0.054571, X Loss: 0.024783, Z Loss: 0.043897, Time: 0.15s
+Epoch [73/100], Train Loss: 1.048610, Y Loss: 0.031895, X Loss: 1.937804, Z Loss: 0.063689, Time: 2.91s
+          Val Loss: 0.121856, Y Loss: 0.050327, X Loss: 0.022509, Z Loss: 0.049937, Time: 0.18s
+  -> 保存最佳模型 (Val Loss: 0.121856)
+Epoch [74/100], Train Loss: 0.091398, Y Loss: 0.033177, X Loss: 0.024036, Z Loss: 0.054477, Time: 2.78s
+          Val Loss: 0.123644, Y Loss: 0.050680, X Loss: 0.018637, Z Loss: 0.060113, Time: 0.15s
+Epoch [75/100], Train Loss: 0.094953, Y Loss: 0.033797, X Loss: 0.015291, Z Loss: 0.076978, Time: 2.89s
+          Val Loss: 0.115995, Y Loss: 0.053993, X Loss: 0.013586, Z Loss: 0.022048, Time: 0.15s
+  -> 保存最佳模型 (Val Loss: 0.115995)
+Epoch [76/100], Train Loss: 0.093170, Y Loss: 0.033672, X Loss: 0.027139, Z Loss: 0.052077, Time: 2.97s
+          Val Loss: 0.133196, Y Loss: 0.054870, X Loss: 0.039245, Z Loss: 0.031068, Time: 0.15s
+Epoch [77/100], Train Loss: 0.091032, Y Loss: 0.034235, X Loss: 0.036704, Z Loss: 0.025449, Time: 2.74s
+          Val Loss: 0.118612, Y Loss: 0.051048, X Loss: 0.019971, Z Loss: 0.038787, Time: 0.15s
+Epoch [78/100], Train Loss: 0.093008, Y Loss: 0.032572, X Loss: 0.032014, Z Loss: 0.050380, Time: 2.80s
+          Val Loss: 0.118977, Y Loss: 0.050243, X Loss: 0.010811, Z Loss: 0.060366, Time: 0.15s
+Epoch [79/100], Train Loss: 0.081516, Y Loss: 0.028992, X Loss: 0.018313, Z Loss: 0.057587, Time: 2.59s
+          Val Loss: 0.140865, Y Loss: 0.054494, X Loss: 0.033137, Z Loss: 0.069196, Time: 0.14s
+Epoch [80/100], Train Loss: 0.093163, Y Loss: 0.031332, X Loss: 0.018004, Z Loss: 0.082099, Time: 2.63s
+          Val Loss: 0.125390, Y Loss: 0.058588, X Loss: 0.012963, Z Loss: 0.025305, Time: 0.15s
+Epoch [81/100], Train Loss: 0.072646, Y Loss: 0.028600, X Loss: 0.009248, Z Loss: 0.045609, Time: 2.73s
+          Val Loss: 0.116247, Y Loss: 0.049115, X Loss: 0.010858, Z Loss: 0.058332, Time: 0.15s
+Epoch [82/100], Train Loss: 0.088690, Y Loss: 0.030155, X Loss: 0.008446, Z Loss: 0.090576, Time: 2.63s
+          Val Loss: 0.138381, Y Loss: 0.058607, X Loss: 0.009649, Z Loss: 0.074009, Time: 0.14s
+Epoch [83/100], Train Loss: 0.078575, Y Loss: 0.028702, X Loss: 0.007488, Z Loss: 0.067655, Time: 2.64s
+          Val Loss: 0.132713, Y Loss: 0.051631, X Loss: 0.014319, Z Loss: 0.091515, Time: 0.15s
+Epoch [84/100], Train Loss: 0.073052, Y Loss: 0.027095, X Loss: 0.015378, Z Loss: 0.046275, Time: 2.66s
+          Val Loss: 0.134126, Y Loss: 0.056924, X Loss: 0.020442, Z Loss: 0.052497, Time: 0.15s
+Epoch [85/100], Train Loss: 0.075764, Y Loss: 0.028187, X Loss: 0.018897, Z Loss: 0.042536, Time: 2.67s
+          Val Loss: 0.119097, Y Loss: 0.053061, X Loss: 0.022717, Z Loss: 0.023074, Time: 0.15s
+Epoch [86/100], Train Loss: 13.328678, Y Loss: 0.028202, X Loss: 26.514141, Z Loss: 0.060080, Time: 2.68s
+          Val Loss: 0.113728, Y Loss: 0.050667, X Loss: 0.012855, Z Loss: 0.036776, Time: 0.14s
+  -> 保存最佳模型 (Val Loss: 0.113728)
+Epoch [87/100], Train Loss: 3324.935071, Y Loss: 0.028342, X Loss: 6649.733402, Z Loss: 0.047706, Time: 2.66s
+          Val Loss: 0.132460, Y Loss: 0.056540, X Loss: 0.019885, Z Loss: 0.050305, Time: 0.14s
+Epoch [88/100], Train Loss: 560717.682212, Y Loss: 0.030492, X Loss: 1121435.224396, Z Loss: 0.080842, Time: 3.14s
+          Val Loss: 0.118934, Y Loss: 0.053149, X Loss: 0.024883, Z Loss: 0.018361, Time: 0.15s
+Epoch [89/100], Train Loss: 454939752155.506409, Y Loss: 0.050008, X Loss: 909879504310.881836, Z Loss: 0.051910, Time: 2.66s
+          Val Loss: 0.139677, Y Loss: 0.056090, X Loss: 0.019314, Z Loss: 0.078163, Time: 0.15s
+Epoch [90/100], Train Loss: 33892288804.646198, Y Loss: 0.038872, X Loss: 67784577609.155251, Z Loss: 0.057528, Time: 2.57s
+          Val Loss: 0.119286, Y Loss: 0.049325, X Loss: 0.016707, Z Loss: 0.057384, Time: 0.14s
+Epoch [91/100], Train Loss: 15922972.644353, Y Loss: 0.048239, X Loss: 31845945.152444, Z Loss: 0.066099, Time: 2.63s
+          Val Loss: 0.119139, Y Loss: 0.057614, X Loss: 0.015768, Z Loss: 0.005963, Time: 0.14s
+Epoch [92/100], Train Loss: 4409482475096356.500000, Y Loss: 1284.919082, X Loss: 8818964950192713.000000, Z Loss: 0.045344, Time: 2.63s
+          Val Loss: 0.132184, Y Loss: 0.054067, X Loss: 0.014203, Z Loss: 0.074514, Time: 0.14s
+Epoch [93/100], Train Loss: 16775046427948764.000000, Y Loss: 698.480772, X Loss: 33550092855897528.000000, Z Loss: 0.063067, Time: 2.80s
+          Val Loss: 0.111325, Y Loss: 0.050395, X Loss: 0.022077, Z Loss: 0.015118, Time: 0.14s
+  -> 保存最佳模型 (Val Loss: 0.111325)
+Epoch [94/100], Train Loss: 3183829357129.204590, Y Loss: 19.868382, X Loss: 6367658714258.289062, Z Loss: 0.044364, Time: 2.63s
+          Val Loss: 0.121343, Y Loss: 0.053498, X Loss: 0.012552, Z Loss: 0.044737, Time: 0.14s
+Epoch [95/100], Train Loss: 0.071522, Y Loss: 0.025895, X Loss: 0.018694, Z Loss: 0.043246, Time: 2.63s
+          Val Loss: 0.112999, Y Loss: 0.050645, X Loss: 0.009903, Z Loss: 0.039407, Time: 0.14s
+Epoch [96/100], Train Loss: 0.068499, Y Loss: 0.027382, X Loss: 0.015104, Z Loss: 0.029738, Time: 2.62s
+          Val Loss: 0.127463, Y Loss: 0.051516, X Loss: 0.017945, Z Loss: 0.068701, Time: 0.14s
+Epoch [97/100], Train Loss: 0.066334, Y Loss: 0.025576, X Loss: 0.019429, Z Loss: 0.026751, Time: 2.67s
+          Val Loss: 0.107754, Y Loss: 0.047304, X Loss: 0.017000, Z Loss: 0.031259, Time: 0.15s
+  -> 保存最佳模型 (Val Loss: 0.107754)
+Epoch [98/100], Train Loss: 0.079594, Y Loss: 0.024621, X Loss: 0.046445, Z Loss: 0.031971, Time: 2.78s
+          Val Loss: 0.132334, Y Loss: 0.054030, X Loss: 0.019880, Z Loss: 0.065792, Time: 0.15s
+Epoch [99/100], Train Loss: 0.074224, Y Loss: 0.027437, X Loss: 0.014264, Z Loss: 0.049868, Time: 2.71s
+          Val Loss: 0.126518, Y Loss: 0.051918, X Loss: 0.018583, Z Loss: 0.061939, Time: 0.15s
+Epoch [100/100], Train Loss: 0.071240, Y Loss: 0.024226, X Loss: 0.016251, Z Loss: 0.056951, Time: 2.71s
+          Val Loss: 0.120753, Y Loss: 0.049757, X Loss: 0.018244, Z Loss: 0.056978, Time: 0.14s
+
+训练完成! 总时间: 0:04:55.004568
+最佳验证损失: 0.107754
+
+=== 计算验证集NMSE ===
+验证集平均NMSE: 0.044045
+
+=== Generating training curves ===
+Training curves saved to: model_checkpoints_rinn/rinn_correct_structure_20260125_142115/training_losses.png
+
+=== Fixed x predicting y functionality ===
+
+Predicting y for test sample 1:
+  Test sample 1 prediction result:
+    Predicted y shape: (1, 101)
+    NMSE: 0.262165
+  Plot saved for sample 1: fixed_x_predicted_y_1.png
+
+Predicting y for test sample 2:
+  Test sample 2 prediction result:
+    Predicted y shape: (1, 101)
+    NMSE: 0.035690
+  Plot saved for sample 2: fixed_x_predicted_y_2.png
+
+Predicting y for test sample 3:
+  Test sample 3 prediction result:
+    Predicted y shape: (1, 101)
+    NMSE: 0.022730
+  Plot saved for sample 3: fixed_x_predicted_y_3.png
+
+Predicting y for test sample 4:
+  Test sample 4 prediction result:
+    Predicted y shape: (1, 101)
+    NMSE: 0.010197
+  Plot saved for sample 4: fixed_x_predicted_y_4.png
+
+Predicting y for test sample 5:
+  Test sample 5 prediction result:
+    Predicted y shape: (1, 101)
+    NMSE: 0.118295
+  Plot saved for sample 5: fixed_x_predicted_y_5.png
+
+=== Fixed y backward predicting x functionality ===
+
+Backward predicting x for test sample 1:
+  Test sample 1 backward result:
+    Real x: [3.   3.94 3.   3.4  3.02]
+    Backward x: [2.9917033 3.9329162 3.0487876 3.4046419 3.0307267]
+  Plot saved for sample 1: fixed_y_backward_x_1.png
+
+Backward predicting x for test sample 2:
+  Test sample 2 backward result:
+    Real x: [3.08 3.94 3.28 3.41 3.02]
+    Backward x: [3.0464635 3.92164   3.234063  3.4051692 3.0234127]
+  Plot saved for sample 2: fixed_y_backward_x_2.png
+
+Backward predicting x for test sample 3:
+  Test sample 3 backward result:
+    Real x: [3.4  3.78 3.49 3.41 3.02]
+    Backward x: [3.2880554 3.8193498 3.5230052 3.4247484 3.0240045]
+  Plot saved for sample 3: fixed_y_backward_x_3.png
+
+Backward predicting x for test sample 4:
+  Test sample 4 backward result:
+    Real x: [3.24 4.   3.35 3.4  3.07]
+    Backward x: [3.210159  3.9698105 3.449724  3.4048605 3.072151 ]
+  Plot saved for sample 4: fixed_y_backward_x_4.png
+
+Backward predicting x for test sample 5:
+  Test sample 5 backward result:
+    Real x: [3.16 3.86 3.21 3.41 3.02]
+    Backward x: [3.1585479 3.84395   3.2499561 3.4132776 3.024078 ]
+  Plot saved for sample 5: fixed_y_backward_x_5.png
+
+=== Multiple solutions generation functionality test ===
+
+Multiple solutions generation results:
+  Number of generated solutions: 100
+  Real x: [3.   3.94 3.   3.4  3.02]
+
+X diversity (standard deviation for each parameter): [0.04284044 0.03306966 0.09357313 0.01063807 0.01034994]
+  Average diversity: 0.03809425234794617
+
+Verifying correctness of generated X:
+  Solution 1 Y prediction error: 2.055502
+  Solution 2 Y prediction error: 1.152842
+  Solution 3 Y prediction error: 1.256851
+  Solution 4 Y prediction error: 2.414548
+  Solution 5 Y prediction error: 1.553075
+  Solution 6 Y prediction error: 2.062289
+  Solution 7 Y prediction error: 2.774864
+  Solution 8 Y prediction error: 2.030776
+  Solution 9 Y prediction error: 2.594636
+  Solution 10 Y prediction error: 2.104190
+  ... and 90 more solutions
+
+Top 5 solutions with smallest error indices: [ 2 72 51 94  3]
+Corresponding error values: [1.15284211 1.1916232  1.24159062 1.25632239 1.25685083]
+
+=== Training completed! ===
+Model checkpoints saved in: model_checkpoints_rinn/rinn_correct_structure_20260125_142115
+Prediction results have been saved.
+
+标准错误:

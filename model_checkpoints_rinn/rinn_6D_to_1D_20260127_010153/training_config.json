@@ -1,0 +1,57 @@
+{
+  "timestamp": "20260127_010153",
+  "model_config": {
+    "input_dim": 7,
+    "hidden_dim": 56,
+    "num_blocks": 5,
+    "num_stages": 2,
+    "num_cycles_per_stage": 2,
+    "ratio_toZ_after_flowstage": 0.3,
+    "ratio_x1_x2_inAffine": 0.8571428571428571
+  },
+  "training_params": {
+    "batch_size": 32,
+    "gradient_accumulation_steps": 1,
+    "learning_rate": 0.0005,
+    "weight_decay": 1e-05,
+    "clip_value": 0.5,
+    "num_epochs": 20,
+    "loss_weights": {
+      "weight_y": 1.5,
+      "weight_x": 0.5,
+      "weight_z": 0.3
+    }
+  },
+  "data_info": {
+    "train_samples": 17872,
+    "val_samples": 4469,
+    "x_dim": 6,
+    "y_dim": 1,
+    "z_dim": 6,
+    "left_input_dim": 7,
+    "right_input_dim": 7,
+    "normalization_method": "robust",
+    "x_mean": [
+      3.1759800910949707,
+      3.859999895095825,
+      3.2799999713897705,
+      3.4000000953674316,
+      3.069999933242798,
+      11.0
+    ],
+    "x_std": [
+      0.24000000953674316,
+      0.16000008583068848,
+      0.2799999713897705,
+      0.009999990463256836,
+      0.04999995231628418,
+      0.48999977111816406
+    ],
+    "y_mean": [
+      -0.307214617729187
+    ],
+    "y_std": [
+      11.797063827514648
+    ]
+  }
+}
