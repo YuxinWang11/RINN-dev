@@ -3,6 +3,52 @@ import torch.nn as nn
 import numpy as np
 
 
+class GaussianPrior(nn.Module):
+    """
+    高斯先验类：支持固定高斯和可学习高斯
+    """
+    def __init__(self, dim, learnable=False):
+        """
+        初始化高斯先验
+        参数:
+            dim: 高斯分布的维度
+            learnable: 是否使用可学习的均值和方差
+        """
+        super(GaussianPrior, self).__init__()
+        self.dim = dim
+        self.learnable = learnable
+        
+        if learnable:
+            # 可学习的均值和对数方差
+            self.mean = nn.Parameter(torch.zeros(dim))
+            self.log_var = nn.Parameter(torch.zeros(dim))
+        else:
+            # 固定的单位高斯分布
+            self.mean = torch.zeros(dim)
+            self.log_var = torch.zeros(dim)
+    
+    def log_prob(self, z):
+        """
+        计算z的高斯对数似然
+        输入:
+            z: 输入张量，形状(batch_size, dim)
+        输出:
+            log_prob: 对数似然，形状(batch_size,)
+        """
+        if self.learnable:
+            mean = self.mean
+            log_var = self.log_var
+        else:
+            mean = self.mean.to(z.device)
+            log_var = self.log_var.to(z.device)
+        
+        # 计算高斯对数似然
+        # log p(z) = -0.5 * (log(2π) + log_var + (z - mean)^2 / exp(log_var))
+        log_prob = -0.5 * (torch.log(torch.tensor(2 * np.pi)) + log_var + 
+                         torch.pow(z - mean, 2) / torch.exp(log_var))
+        return log_prob.sum(dim=1)
+
+
 class AffineCoupling(nn.Module):
     """
     AffineCoupling层：将输入特征分为两部分，用一部分预测另一部分的仿射变换参数
@@ -323,7 +369,8 @@ class RealNVP(nn.Module):
     RealNVP主类：实现完整的归一化流模型，符合RINN论文中"层级拆分+内部循环"的设计
     """
     def __init__(self, input_dim, hidden_dim=64, num_stages=4, num_cycles_per_stage=2, 
-                 ratio_toZ_after_flowstage=0.5, ratio_x1_x2_inAffine=0.5):
+                 ratio_toZ_after_flowstage=0.5, ratio_x1_x2_inAffine=0.5, 
+                 gaussian_learnable=False):
         """
         初始化RealNVP模型
         参数:
@@ -333,6 +380,7 @@ class RealNVP(nn.Module):
             num_cycles_per_stage: 每个流阶段中的内部循环次数
             ratio_toZ_after_flowstage: FlowStage拆分后进入z输出的比例 (0,1)
             ratio_x1_x2_inAffine: AffineCoupling层中条件部分x1的比例 (0,1)
+            gaussian_learnable: 是否使用可学习的高斯先验
         """
         super(RealNVP, self).__init__()
         
@@ -347,12 +395,16 @@ class RealNVP(nn.Module):
         self.num_stages = num_stages
         self.ratio_toZ_after_flowstage = ratio_toZ_after_flowstage
         self.ratio_x1_x2_inAffine = ratio_x1_x2_inAffine
+        self.gaussian_learnable = gaussian_learnable
         
         # 创建流动阶段列表
         self.stages = nn.ModuleList()
         
         # 创建用于残差链接融合的MLP层列表
         self.fusion_mlps = nn.ModuleList()
+        
+        # 创建高斯先验列表（每个阶段的z_part和最终的current_h都有一个高斯先验）
+        self.gaussian_priors = nn.ModuleList()
         
         # 预计算并存储每个阶段的维度信息，用于前向和逆向变换
         self.stage_input_dims = []     # 每个FlowStage的输入维度
@@ -417,8 +469,14 @@ class RealNVP(nn.Module):
             )
             self.fusion_mlps.append(fusion_mlp)
             
+            # 创建当前阶段z_part的高斯先验
+            self.gaussian_priors.append(GaussianPrior(z_part_dim, learnable=gaussian_learnable))
+            
             # 更新当前维度（为下一个阶段准备）
             current_dim = h_prime_dim
+        
+        # 为最终的current_h创建高斯先验
+        self.final_gaussian_prior = GaussianPrior(current_dim, learnable=gaussian_learnable)
     
     def forward(self, x):
         """
@@ -428,6 +486,7 @@ class RealNVP(nn.Module):
         输出:
             z: 变换后的数据，形状(batch_size, latent_dim)
             log_det_total: 雅可比行列式的对数总和，形状(batch_size,)
+            total_log_pz: 各阶段z_part和最终current_h的高斯对数似然之和，形状(batch_size,)
         """
         # 获取批次大小
         batch_size = x.shape[0]
@@ -445,9 +504,10 @@ class RealNVP(nn.Module):
         else:
             h = x
         
-        # 初始化z_list和log_det_total
+        # 初始化z_list、log_det_total和total_log_pz
         z_list = []
         log_det_total = 0
+        total_log_pz = 0
         
         # 当前处理的特征
         current_h = h
@@ -467,6 +527,10 @@ class RealNVP(nn.Module):
             # 执行当前阶段的前向变换（先循环再拆分）
             z_part, h_prime, log_det = stage(current_h)
             log_det_total += log_det
+            
+            # 计算当前z_part的高斯对数似然
+            log_pz = self.gaussian_priors[i].log_prob(z_part)
+            total_log_pz += log_pz
             
             # 添加当前阶段的输出z
             z_list.append(z_part)
@@ -491,10 +555,14 @@ class RealNVP(nn.Module):
         # 添加最后剩余的特征作为最终的z
         z_list.append(current_h)
         
+        # 计算最终current_h的高斯对数似然
+        log_pz_final = self.final_gaussian_prior.log_prob(current_h)
+        total_log_pz += log_pz_final
+        
         # 合并所有z为一个向量
         z = torch.cat(z_list, dim=-1)
         
-        return z, log_det_total
+        return z, log_det_total, total_log_pz
     
     def inverse(self, z):
         """
@@ -578,6 +646,17 @@ class RealNVP(nn.Module):
         return x_recon, log_det_total
 
 
+def calculate_loss(log_px):
+    """
+    计算损失函数
+    输入:
+        log_px: 输入数据的对数似然，形状(batch_size,)
+    输出:
+        loss: 负对数似然的均值，标量
+    """
+    return -torch.mean(log_px)
+
+
 # 可逆性验证示例
 if __name__ == "__main__":
     # 设置随机种子以保证结果可复现
@@ -586,28 +665,38 @@ if __name__ == "__main__":
     # 配置参数 - 测试非偶数维度
     input_dim = 13  # 目标输入维度（非偶数）
     batch_size = 32  # 批次大小
-    data_dim = 10  # 实际数据维度（小于input_dim，测试零填充功能）
+    data_dim = 13  # 实际数据维度（等于input_dim）
     
-    # 创建模型 - 使用非0.5拆分比例
+    # 创建模型 - 使用非0.5拆分比例，可学习高斯先验
     model = RealNVP(
         input_dim=input_dim,
         hidden_dim=64,
         num_stages=4,
         num_cycles_per_stage=2,
         ratio_toZ_after_flowstage=0.3,  # 30%进入z输出
-        ratio_x1_x2_inAffine=0.25       # 25%为x1条件部分
+        ratio_x1_x2_inAffine=0.25,       # 25%为x1条件部分
+        gaussian_learnable=True          # 使用可学习高斯先验
     )
     
-    # 生成随机输入（实际数据维度小于目标输入维度）
+    # 生成随机输入（实际数据维度等于目标输入维度）
     x = torch.randn(batch_size, data_dim)
     
     try:
         print(f"原始输入x的形状: {x.shape}")
         
         # 前向传播
-        z, log_det_forward = model(x)
+        z, log_det_forward, total_log_pz = model(x)
         print(f"前向传播成功，z的形状: {z.shape}")
         print(f"前向log_det: {log_det_forward.mean().item():.4f}")
+        print(f"总log_pz: {total_log_pz.mean().item():.4f}")
+        
+        # 计算log_px
+        log_px = total_log_pz + log_det_forward
+        print(f"log_px: {log_px.mean().item():.4f}")
+        
+        # 计算损失
+        loss = calculate_loss(log_px)
+        print(f"损失: {loss.item():.4f}")
         
         # 逆向传播
         x_recon, log_det_inverse = model.inverse(z)

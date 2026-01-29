@@ -63,7 +63,7 @@ class RINNBlock(nn.Module):
         x = self.actnorm(x)
         
         # RealNVP 变换 - 保存这个输出用于z_loss计算
-        z_from_realnvp, log_det_realnvp = self.realnvp(x)
+        z_from_realnvp, log_det_realnvp, _ = self.realnvp(x)
         
         # JL 层变换
         z = self.jl_layer(z_from_realnvp)
@@ -93,7 +93,7 @@ class RINNBlock(nn.Module):
         x = self.actnorm(x)
         
         # RealNVP 变换 - 保存这个输出用于z_loss计算
-        z_from_realnvp, log_det_realnvp = self.realnvp(x)
+        z_from_realnvp, log_det_realnvp, _ = self.realnvp(x)
         
         # JL 层变换
         z = self.jl_layer(z_from_realnvp)
