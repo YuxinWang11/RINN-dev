@@ -16,6 +16,11 @@
 - **验证集Y NMSE**: 0.001251
 - **验证集X损失**: 0.000092
 - **验证集Z损失**: 0.022458
+
+### 最新预测误差统计
+- **Real Part MAE**: 0.006171, **RMSE**: 0.008537, **NMSE**: 0.000207
+- **Imaginary Part MAE**: 0.007934, **RMSE**: 0.012506, **NMSE**: 0.000849
+- **Overall NMSE**: 0.000528
 ​
 ## 项目概述​
 本仓库用于复现论文《R-INN: An Efficient Reversible Design Model for Microwave Circuit Design》中的可逆神经网络（Real NVP-based Invertible Neural Network）模型。该模型将可逆神经网络应用于微波电路设计，通过学习电路参数与电磁响应之间的映射关系，实现高效的电路设计与优化。​
