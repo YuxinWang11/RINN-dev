@@ -7,7 +7,7 @@ import numpy as np
 import re
 
 # 读取CSV文件
-data_path = 'data/S Parameter Plot 7.csv'
+data_path = 'data/S Parameter Plot testdata8.csv'
 
 print("=" * 80)
 print("CSV文件结构分析")

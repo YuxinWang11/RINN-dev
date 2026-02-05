@@ -3,6 +3,43 @@ import torch.nn as nn
 import numpy as np
 
 
+class ResBlock(nn.Module):
+    """
+    残差块：解决深层网络梯度消失，提升特征提取能力
+    结构：输入层 → 权重归一化全连接层 → ReLU → 权重归一化全连接层 → 残差连接 → ReLU
+    """
+    def __init__(self, hidden_dim):
+        super(ResBlock, self).__init__()
+        
+        # 第一层：权重归一化全连接层 + ReLU
+        self.fc1 = nn.utils.weight_norm(nn.Linear(hidden_dim, hidden_dim))
+        
+        # 第二层：权重归一化全连接层
+        self.fc2 = nn.utils.weight_norm(nn.Linear(hidden_dim, hidden_dim))
+        
+        # 激活函数
+        self.relu = nn.ReLU()
+    
+    def forward(self, x):
+        # 保存输入用于残差连接
+        identity = x
+        
+        # 第一层
+        out = self.fc1(x)
+        out = self.relu(out)
+        
+        # 第二层
+        out = self.fc2(out)
+        
+        # 残差连接
+        out += identity
+        
+        # 输出激活
+        out = self.relu(out)
+        
+        return out
+
+
 class GaussianPrior(nn.Module):
     """
     高斯先验类：支持固定高斯和可学习高斯
@@ -72,43 +109,34 @@ class AffineCoupling(nn.Module):
         if self.x1_dim <= 0 or self.x2_dim <= 0:
             raise ValueError(f"AffineCoupling拆分后维度必须都大于0，但得到x1_dim={self.x1_dim}, x2_dim={self.x2_dim}")
         
-        # 导入ActNorm
-        import sys
-        import os
-        sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        from actnorm.actnorm import ActNorm1d
-        
         # 用于生成缩放参数scale的MLP
+        # 结构：nn.Linear (x1_dim, hidden_dim) → ReLU → ResBlock → nn.Linear (hidden_dim, x2_dim) → nn.Tanh () → 权重归一化的 Linear（无偏置，输出维度 x2_dim）
         self.scale_net = nn.Sequential(
             nn.Linear(self.x1_dim, hidden_dim),
-            ActNorm1d(hidden_dim),
             nn.ReLU(),
-            nn.Linear(hidden_dim, hidden_dim),
-            ActNorm1d(hidden_dim),
-            nn.ReLU(),
-            nn.Linear(hidden_dim, hidden_dim),
-            ActNorm1d(hidden_dim),
-            nn.ReLU(),
+            ResBlock(hidden_dim),
             nn.Linear(hidden_dim, self.x2_dim),
-            nn.Tanh()  # 使用tanh限制scale范围
+            nn.Tanh(),  # 使用tanh限制scale范围
+            nn.utils.weight_norm(nn.Linear(self.x2_dim, self.x2_dim, bias=False))
         )
         
+        # 初始化：最后一层 Linear 的权重初始化为 0.1
+        last_linear = self.scale_net[-1]
+        if hasattr(last_linear, 'weight_g'):
+            last_linear.weight_g.data.fill_(0.1)
+        else:
+            last_linear.weight.data.fill_(0.1)
+        
         # 用于生成平移参数translate的MLP
+        # 结构：与scale_net对称，仅移除最后两层（Tanh和权重归一化Linear），输出层无激活函数
         self.translate_net = nn.Sequential(
             nn.Linear(self.x1_dim, hidden_dim),
-            ActNorm1d(hidden_dim),
             nn.ReLU(),
-            nn.Linear(hidden_dim, hidden_dim),
-            ActNorm1d(hidden_dim),
-            nn.ReLU(),
-            nn.Linear(hidden_dim, hidden_dim),
-            ActNorm1d(hidden_dim),
-            nn.ReLU(),#尝试使用两层神经网络
+            ResBlock(hidden_dim),
             nn.Linear(hidden_dim, self.x2_dim)
         )
         
-        # 耦合层输出端全局标准化
-        self.output_norm = ActNorm1d(self.input_dim)
+        # 耦合层输出端不需要标准化，保持变换可逆性
     
     def forward(self, x):
         """
@@ -137,11 +165,8 @@ class AffineCoupling(nn.Module):
         # 合并条件部分和变换后的部分
         output = torch.cat([h1, h2_out], dim=-1)
         
-        # 应用耦合层输出端全局标准化
-        output = self.output_norm(output)
-        
-        # 计算log_det，包括output_norm的雅可比行列式
-        log_det = scale.sum(dim=-1) + self.output_norm.log_det_jacobian(output)
+        # 计算log_det
+        log_det = scale.sum(dim=-1)
         
         return output, log_det
     
@@ -158,9 +183,6 @@ class AffineCoupling(nn.Module):
         if z.shape[1] != self.input_dim:
             raise ValueError(f"AffineCoupling逆变换期望输入维度 {self.input_dim}，但得到 {z.shape[1]}")
         
-        # 应用output_norm的逆变换
-        z = self.output_norm.inverse(z)
-        
         # 拆分z为条件部分和变换后的部分
         z1 = z[:, :self.x1_dim]  # 条件部分
         z2 = z[:, self.x1_dim:]  # 变换后的部分
@@ -175,8 +197,8 @@ class AffineCoupling(nn.Module):
         # 合并条件部分和恢复后的部分
         output = torch.cat([z1, z2_out], dim=-1)
         
-        # 计算逆过程的log_det，包括output_norm逆变换的雅可比行列式
-        log_det = -scale.sum(dim=-1) - self.output_norm.log_det_jacobian(output)
+        # 计算逆过程的log_det
+        log_det = -scale.sum(dim=-1)
         
         return output, log_det
 
