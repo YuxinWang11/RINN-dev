@@ -73,6 +73,7 @@ def extract_geometry_params(col_name):
 x_samples = []
 valid_columns = []
 
+<<<<<<< Updated upstream
 for i, col in enumerate(header[1:]):  # 跳过第一列频率
     params = extract_geometry_params(col)
     if params:
@@ -82,6 +83,14 @@ for i, col in enumerate(header[1:]):  # 跳过第一列频率
 x_features = np.array(x_samples, dtype=np.float32)
 print(f'X特征形状: {x_features.shape}')
 print(f'X特征示例 (第一个样本): {x_features[0]}')
+
+# 加载训练数据
+train_data_path = 'data/S Parameter Plot300.csv'
+train_x, train_y, freq_data = load_data_from_csv(train_data_path)
+
+# 加载验证数据
+val_data_path = 'data/S Parameter Plot200.csv'
+val_x, val_y, _ = load_data_from_csv(val_data_path)
 
 # 读取S11数据
 data = np.genfromtxt(data_path, delimiter=',', skip_header=1)
@@ -293,6 +302,7 @@ scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0
 num_epochs = 200  # 增加训练轮数，让模型有更多时间拟合
 num_epochs = 150  # 增加训练轮数，让模型有更多时间拟合
 best_val_loss = float('inf')
+best_epoch = 0  # 初始化最佳epoch为0
 patience = 60  # 增加早停耐心，避免过早停止
 patience_counter = 0
 
@@ -494,6 +504,7 @@ if not skip_training:
         # 保存最佳模型
         if epoch_val_losses['total_loss'] < best_val_loss:
             best_val_loss = epoch_val_losses['total_loss']
+            best_epoch = epoch  # 记录最佳模型对应的epoch
             patience_counter = 0
             
             checkpoint = {
@@ -513,7 +524,7 @@ if not skip_training:
                 'right_input_dim': right_input_dim
             }
             torch.save(checkpoint, os.path.join(checkpoint_dir, 'best_model.pth'))
-            print(f'  -> 保存最佳模型 (Val Loss: {best_val_loss:.6f})')
+            print(f'  -> 保存最佳模型 (Val Loss: {best_val_loss:.6f}, Epoch: {epoch+1})')
         else:
             patience_counter += 1
         
@@ -525,6 +536,47 @@ if not skip_training:
     total_time = datetime.now() - start_time
     print(f'\n训练完成! 总时间: {total_time}')
     print(f'最佳验证损失: {best_val_loss:.6f}')
+    print(f'最佳验证损失对应的epoch: {best_epoch+1}')
+    
+    # 保存最佳验证损失到文件
+    best_val_loss_file = os.path.join(checkpoint_dir, 'best_val_loss.txt')
+    with open(best_val_loss_file, 'w') as f:
+        f.write(f'Best Validation Loss: {best_val_loss:.6f}\n')
+        f.write(f'Training Time: {total_time}\n')
+        f.write(f'Best Epoch: {best_epoch+1}\n')
+    print(f'最佳验证损失已保存到: {best_val_loss_file}')
+    
+    # 计算验证集上的NMSE
+    print('\n=== 计算验证集NMSE ===')
+    model.eval()
+    total_val_nmse = 0.0
+    with torch.no_grad():
+        for batch in val_loader:
+            left_batch = batch[0].to(device)
+            right_batch = batch[1].to(device)
+            
+            # 正向映射：left_input → predicted_right
+            predicted_right, _, _ = model(left_batch, return_intermediate=True)
+            
+            # 从predicted_right中提取Y'
+            predicted_y = predicted_right[:, :y_dim]
+            
+            # 从right_input中提取真实Y
+            real_y = right_batch[:, :y_dim]
+            
+            # 计算NMSE
+            batch_nmse = nmse_loss(real_y, predicted_y)
+            total_val_nmse += batch_nmse.item()
+    
+    avg_val_nmse = total_val_nmse / len(val_loader)
+    print(f'验证集平均NMSE: {avg_val_nmse:.6f}')
+
+    # 将验证集平均NMSE保存到文件
+    best_val_loss_file = os.path.join(checkpoint_dir, 'best_val_loss.txt')
+    with open(best_val_loss_file, 'a') as f:
+        f.write(f'Validation Set Average NMSE: {avg_val_nmse:.6f}\n')
+    print(f'验证集平均NMSE已追加保存到: {best_val_loss_file}')
+>>>>>>> Stashed changes
 else:
     print('跳过训练阶段 (skip_training=True)')
     # 生成虚拟损失数据以避免可视化错误
@@ -633,11 +685,17 @@ for i, test_idx in enumerate(test_indices):
 # ============== 模型功能实现：固定y回推x ==============
 print('\n=== Fixed y backward predicting x functionality ===')
 
-# 从验证集中选取五个测试样本
-y_test_indices = [0, 10, 20, 30, 40]  # 五个不同的测试样本索引
+# 从验证集中选取测试样本，使用全部验证集样本
+y_test_indices = list(range(val_size))  # 使用全部验证集样本
+print(f'验证集大小: {val_size}, 使用全部样本进行逆向预测')
+
+# 存储逆向预测的结果，用于计算正确率
+backward_results = []
+all_relative_errors = []
 
 for i, y_test_idx in enumerate(y_test_indices):
-    print(f'\nBackward predicting x for test sample {i+1}:')
+    if i % 10 == 0:  # 每10个样本打印一次进度
+        print(f'\nBackward predicting x for test sample {i+1}/{val_size}:')
     
     # 从验证集中选取一个测试样本
     y_test = val_y_normalized[y_test_idx:y_test_idx+1]  # 形状：(1, y_dim)
@@ -660,9 +718,82 @@ for i, y_test_idx in enumerate(y_test_indices):
     # 获取真实的x值
     real_x = val_x[y_test_idx:y_test_idx+1]
 
-    print(f'  Test sample {i+1} backward result:')
-    print(f'    Real x: {real_x[0]}')
-    print(f'    Backward x: {reconstructed_x[0]}')
+    if i % 10 == 0:  # 每10个样本打印一次结果
+        print(f'  Test sample {i+1} backward result:')
+        print(f'    Real x: {real_x[0]}')
+        print(f'    Backward x: {reconstructed_x[0]}')
+    
+    # 计算每个参数的相对误差
+    relative_errors = np.abs((reconstructed_x[0] - real_x[0]) / (real_x[0] + 1e-8))
+    all_relative_errors.append(relative_errors)
+    
+    if i % 10 == 0:  # 每10个样本打印一次误差
+        print(f'    Relative errors: {relative_errors}')
+    
+    # 存储结果
+    backward_results.append({
+        'real_x': real_x[0].tolist(),
+        'predicted_x': reconstructed_x[0].tolist(),
+        'relative_errors': relative_errors.tolist()
+    })
+
+# 计算所有样本的平均相对误差
+all_relative_errors = np.array(all_relative_errors)
+avg_relative_error = np.mean(all_relative_errors)
+accuracy = 1.0 - avg_relative_error
+
+print(f'\n=== 计算逆向预测x正确率 ===')
+print(f'使用全部验证集样本 ({val_size}个) 计算逆向预测x的平均相对误差')
+print(f'逆向预测x的平均相对误差: {avg_relative_error:.6f}')
+print(f'逆向预测x的正确率: {accuracy:.6f}')
+
+# 将逆向预测x的平均相对误差保存到文件
+best_val_loss_file = os.path.join(checkpoint_dir, 'best_val_loss.txt')
+with open(best_val_loss_file, 'a') as f:
+    f.write(f'Backward Prediction Avg Relative Error: {avg_relative_error:.6f}\n')
+    f.write(f'Backward Prediction Accuracy: {accuracy:.6f}\n')
+print(f'逆向预测结果已追加保存到: {best_val_loss_file}')
+
+# 保存逆向预测的详细结果
+backward_prediction_results = {
+    'total_samples': val_size,
+    'average_relative_error': float(avg_relative_error),
+    'accuracy': float(accuracy),
+    'detailed_results': backward_results
+}
+
+# 保存结果到文件
+results_file = os.path.join(checkpoint_dir, 'backward_prediction_results.json')
+with open(results_file, 'w', encoding='utf-8') as f:
+    json.dump(backward_prediction_results, f, ensure_ascii=False, indent=2)
+
+print(f'逆向预测结果已保存到: {results_file}')
+
+# 可视化前5个样本的结果作为示例
+print('\n=== 可视化前5个样本的逆向预测结果 ===')
+for i, y_test_idx in enumerate(y_test_indices[:5]):
+    print(f'\nVisualizing backward prediction for sample {i+1}:')
+    
+    # 从验证集中选取一个测试样本
+    y_test = val_y_normalized[y_test_idx:y_test_idx+1]  # 形状：(1, y_dim)
+
+    # 创建右侧输入：Y + Z（Z是随机生成的标准高斯分布）
+    z_test = np.random.randn(1, z_dim).astype(np.float32)
+    right_test_input = np.concatenate((y_test, z_test), axis=1)
+    right_test_input = torch.FloatTensor(right_test_input).to(device)
+
+    # 使用模型进行反向预测
+    with torch.no_grad():
+        reconstructed_left, _ = model.inverse(right_test_input)
+        
+        # 从reconstructed_left中提取X'
+        reconstructed_x_normalized = reconstructed_left[:, :x_dim]
+        
+        # 反标准化得到回推的x
+        reconstructed_x = reconstructed_x_normalized.cpu().numpy() * x_std + x_mean
+
+    # 获取真实的x值
+    real_x = val_x[y_test_idx:y_test_idx+1]
 
     # 使用回推的x进行正向预测，验证一致性
     with torch.no_grad():
@@ -822,6 +953,9 @@ plt.close()
 # 保存多解生成结果
 np.save(os.path.join(checkpoint_dir, 'generated_xs.npy'), reconstructed_xs)
 np.save(os.path.join(checkpoint_dir, 'predicted_ys.npy'), predicted_ys)
+
+# ============== 计算并保存逆向预测x正确率 ==============
+# 注意：逆向预测x的正确率已经在上面计算并保存过了，这里不再重复计算
 
 # ============== Saving prediction results ==============
 # Note: Prediction results for fixed x predicting y and fixed y backward predicting x have already been saved inside their respective loops

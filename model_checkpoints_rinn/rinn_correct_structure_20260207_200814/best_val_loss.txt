@@ -1,0 +1,14 @@
+Best Validation Loss: 0.100099
+Training Time: 0:01:18.384015
+Epoch: 149
+
+=== 计算逆向预测x正确率 ===
+逆向预测x的平均相对误差: 0.022579
+Epoch [133/150], Train Loss: 0.038696, Y Loss: 0.014864, X Loss: 0.000191, Z Loss: 0.054348, Time: 0.41s
+
+  Val Loss: 0.100099, Y Loss: 0.054546, X Loss: 0.004363, Z Loss: 0.053663, Time: 0.10s
+  -> 保存最佳模型 (Val Loss: 0.100099)
+
+
+
+
