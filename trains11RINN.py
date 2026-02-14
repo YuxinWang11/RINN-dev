@@ -340,30 +340,20 @@ print(f'Affine coupling比率: {ratio_x1_x2_inAffine}')
 left_train_input = np.concatenate((train_x_normalized, np.zeros((len(train_x_normalized), padding_dim), dtype=np.float32)), axis=1)
 left_val_input = np.concatenate((val_x_normalized, np.zeros((len(val_x_normalized), padding_dim), dtype=np.float32)), axis=1)
 
-# 右侧输入：Y + Z（Z是随机生成的标准高斯分布）
-train_z = np.random.randn(len(train_y_normalized), z_dim).astype(np.float32)
-val_z = np.random.randn(len(val_y_normalized), z_dim).astype(np.float32)
+# 注意：Z现在在每个epoch重新采样，不再在这里固定生成
+# 右侧输入将在训练循环中动态生成
 
-right_train_input = np.concatenate((train_y_normalized, train_z), axis=1)
-right_val_input = np.concatenate((val_y_normalized, val_z), axis=1)
-
-# 转换为torch张量
+# 转换为torch张量（左侧输入固定，右侧输入将在每个epoch动态生成）
 left_train = torch.FloatTensor(left_train_input)
-right_train = torch.FloatTensor(right_train_input)
 left_val = torch.FloatTensor(left_val_input)
-right_val = torch.FloatTensor(right_val_input)
 
 print('\n数据集划分:')
 print(f'  训练集: {len(left_train)} 样本')
 print(f'  验证集: {len(left_val)} 样本')
+print('  注意：Z将在每个epoch重新采样，增强模型泛化能力')
 
-# 创建DataLoader
-batch_size = config['training_params']['batch_size']  # 从配置中获取batch_size，提高训练稳定性
-train_dataset = TensorDataset(left_train, right_train)
-val_dataset = TensorDataset(left_val, right_val)
-
-train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
-val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False)  # 从配置中获取batch_size，提高验证效率
+# DataLoader将在训练循环中动态创建
+batch_size = config['training_params']['batch_size']
 
 # ============== 模型定义 ==============
 print('\n=== 模型定义 ===')
@@ -528,6 +518,25 @@ if not skip_training:
 
     for epoch in range(num_epochs):
         epoch_start_time = time.time()
+        
+        # ========== 每个epoch重新采样Z ==========
+        # 重新采样训练集和验证集的Z
+        train_z = np.random.randn(len(train_y_normalized), z_dim).astype(np.float32)
+        val_z = np.random.randn(len(val_y_normalized), z_dim).astype(np.float32)
+        
+        # 创建右侧输入：Y + Z
+        right_train_input = np.concatenate((train_y_normalized, train_z), axis=1)
+        right_val_input = np.concatenate((val_y_normalized, val_z), axis=1)
+        
+        # 转换为torch张量
+        right_train = torch.FloatTensor(right_train_input)
+        right_val = torch.FloatTensor(right_val_input)
+        
+        # 创建DataLoader
+        train_dataset = TensorDataset(left_train, right_train)
+        val_dataset = TensorDataset(left_val, right_val)
+        train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+        val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False)
         
         # 训练阶段
         model.train()
