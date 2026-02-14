@@ -33,27 +33,27 @@ def parse_args():
 
 args = parse_args()
 
-# 加载配置
+# 加载配置 - 使用贝叶斯优化找到的最佳参数
 config = {
     "model_config": {
-        "hidden_dim": 56,
-        "num_blocks": 4,
-        "num_stages": 2,
-        "num_cycles_per_stage": 2,
-        "ratio_toZ_after_flowstage": 0.273,
-        "ratio_x1_x2_inAffine": 0.421
+        "hidden_dim": 64,  # 最佳参数
+        "num_blocks": 8,   # 最佳参数
+        "num_stages": 3,   # 最佳参数
+        "num_cycles_per_stage": 2,  # 最佳参数
+        "ratio_toZ_after_flowstage": 0.194,  # 最佳参数
+        "ratio_x1_x2_inAffine": 0.120  # 最佳参数
     },
     "training_params": {
-        "batch_size": 16,
+        "batch_size": 32,  # 最佳参数
         "gradient_accumulation_steps": 1,
-        "learning_rate": 0.000659,
-        "weight_decay": 1.5e-06,
+        "learning_rate": 0.000261,  # 最佳参数
+        "weight_decay": 1.1e-06,  # 最佳参数
         "clip_value": 0.5,
-        "num_epochs": 150,
+        "num_epochs": 300,  # 完整训练300 epochs
         "loss_weights": {
-            "weight_y": 0.626,
-            "weight_x": 0.233,
-            "weight_z": 0.254
+            "weight_y": 1.955,  # 最佳参数
+            "weight_x": 0.849,  # 最佳参数
+            "weight_z": 0.185   # 最佳参数
         }
     },
     "data_params": {
