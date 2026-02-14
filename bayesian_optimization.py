@@ -232,22 +232,17 @@ print(f'总输入/输出维度: {left_input_dim} (左右侧维度相同)')
 left_train_input = np.concatenate((train_x_normalized, np.zeros((len(train_x_normalized), padding_dim), dtype=np.float32)), axis=1)
 left_val_input = np.concatenate((val_x_normalized, np.zeros((len(val_x_normalized), padding_dim), dtype=np.float32)), axis=1)
 
-# 右侧输入：Y + Z（Z是随机生成的标准高斯分布）
-train_z = np.random.randn(len(train_y_normalized), z_dim).astype(np.float32)
-val_z = np.random.randn(len(val_y_normalized), z_dim).astype(np.float32)
+# 注意：Z现在在每个epoch重新采样，不再在这里固定生成
+# 右侧输入将在训练循环中动态生成
 
-right_train_input = np.concatenate((train_y_normalized, train_z), axis=1)
-right_val_input = np.concatenate((val_y_normalized, val_z), axis=1)
-
-# 转换为torch张量
+# 转换为torch张量（左侧输入固定）
 left_train = torch.FloatTensor(left_train_input)
-right_train = torch.FloatTensor(right_train_input)
 left_val = torch.FloatTensor(left_val_input)
-right_val = torch.FloatTensor(right_val_input)
 
 print('\n数据集划分:')
 print(f'  训练集: {len(left_train)} 样本')
 print(f'  验证集: {len(left_val)} 样本')
+print('  注意：Z将在每个epoch重新采样，增强模型泛化能力')
 
 # ============== 模型定义与损失函数 ==============
 from R_INN_model.rinn_model import RINNModel
@@ -294,13 +289,33 @@ def calculate_loss(model, left_input, right_input, x_dim, y_dim, weight_y, weigh
     }
 
 # ============== 训练函数 ==============
-def train_model(model, train_loader, val_loader, optimizer, scheduler, num_epochs, 
-                x_dim, y_dim, weight_y, weight_x, weight_z, device, patience=30):
-    """训练模型"""
+def train_model(model, left_train, left_val, train_y_normalized, val_y_normalized, 
+                batch_size, optimizer, scheduler, num_epochs, 
+                x_dim, y_dim, z_dim, weight_y, weight_x, weight_z, device, patience=30):
+    """训练模型 - 每个epoch重新采样Z"""
     best_val_loss = float('inf')
     patience_counter = 0
     
     for epoch in range(num_epochs):
+        # ========== 每个epoch重新采样Z ==========
+        # 重新采样训练集和验证集的Z
+        train_z = np.random.randn(len(train_y_normalized), z_dim).astype(np.float32)
+        val_z = np.random.randn(len(val_y_normalized), z_dim).astype(np.float32)
+        
+        # 创建右侧输入：Y + Z
+        right_train_input = np.concatenate((train_y_normalized, train_z), axis=1)
+        right_val_input = np.concatenate((val_y_normalized, val_z), axis=1)
+        
+        # 转换为torch张量
+        right_train = torch.FloatTensor(right_train_input)
+        right_val = torch.FloatTensor(right_val_input)
+        
+        # 创建DataLoader
+        train_dataset = TensorDataset(left_train, right_train)
+        val_dataset = TensorDataset(left_val, right_val)
+        train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+        val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False)
+        
         # 训练阶段
         model.train()
         train_loss = 0.0
@@ -382,13 +397,8 @@ def objective(trial):
     
     print(f"\n尝试参数: {params}")
     
-    # 创建DataLoader
+    # 获取batch_size
     batch_size = params["batch_size"]
-    train_dataset = TensorDataset(left_train, right_train)
-    val_dataset = TensorDataset(left_val, right_val)
-    
-    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
-    val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False)
     
     # 创建模型
     model = RINNModel(
@@ -416,9 +426,10 @@ def objective(trial):
     # 训练模型
     try:
         best_val_loss = train_model(
-            model, train_loader, val_loader, optimizer, scheduler,
+            model, left_train, left_val, train_y_normalized, val_y_normalized,
+            batch_size, optimizer, scheduler,
             num_epochs=50,  # 为了加快优化速度，使用较少的epoch
-            x_dim=x_dim, y_dim=y_dim,
+            x_dim=x_dim, y_dim=y_dim, z_dim=z_dim,
             weight_y=params["weight_y"],
             weight_x=params["weight_x"],
             weight_z=params["weight_z"],
