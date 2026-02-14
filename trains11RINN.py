@@ -969,42 +969,91 @@ for i, y_test_idx in enumerate(y_test_indices[:5]):
     # 确保real_y维度正确
     real_y = real_y[:, :202]  # 只保留前202维（101维实部 + 101维虚部）
 
-    # 可视化：将x分布和y预测拼到一起
-    fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(12, 12), gridspec_kw={'height_ratios': [1, 1, 1]})
+    # 可视化：标准Y->X绘图范式 (3行5列布局)
+    # 加载几何参数范围
+    param_ranges = {}
+    if os.path.exists('geometry_params_ranges.json'):
+        with open('geometry_params_ranges.json', 'r') as f:
+            param_ranges = json.load(f)
     
-    # 第一个子图：x参数对比
-    grid = np.arange(x_dim)
-    width = 0.35
+    # 参数名称
+    params = ['H1', 'H2', 'H3', 'H_C1', 'H_C2']
     
-    ax1.bar(grid - width/2, real_x[0], width, label='Real x', color='blue')
-    ax1.bar(grid + width/2, reconstructed_x[0], width, label='Backward x', color='red')
-    ax1.set_xlabel('Geometry Parameter Index')
-    ax1.set_ylabel('Parameter Value')
-    ax1.set_title(f'X Parameters Comparison - Sample {i+1}')
-    ax1.set_xticks(grid)
-    ax1.legend()
-    ax1.grid(True, alpha=0.3)
+    # 创建图：5个几何参数子图（横向排列） + 2个曲线子图（纵向排列）
+    fig = plt.figure(figsize=(20, 15))
     
-    # 第二个子图：实部对比
-    ax2.plot(freq_data[:101], real_y[0, :101], label='Real Re(S11)', color='blue', linewidth=2)
-    ax2.plot(freq_data[:101], predicted_y[0, :101], label='Predicted Re(S11)', color='red', linestyle='--', linewidth=2)
+    # 创建整个图表的网格布局
+    gs = fig.add_gridspec(3, 5, height_ratios=[1, 1, 1], width_ratios=[1, 1, 1, 1, 1])
+    
+    # 创建5个几何参数子图（第一行横向排列）
+    for j, (param, real_value, recon_value) in enumerate(zip(params, real_x[0], reconstructed_x[0])):
+        ax = fig.add_subplot(gs[0, j])
+        
+        # 绘制竖线代表数轴
+        ax.axvline(x=0.5, color='black', linewidth=1)
+        
+        # 获取参数范围
+        if param in param_ranges:
+            y_min = param_ranges[param]['min']
+            y_max = param_ranges[param]['max']
+            
+            # 绘制上下界参考线
+            ax.axhline(y=y_min, xmin=0.2, xmax=0.8, color='green', linestyle='--', linewidth=1, label=f'{param} min')
+            ax.axhline(y=y_max, xmin=0.2, xmax=0.8, color='red', linestyle='--', linewidth=1, label=f'{param} max')
+            
+            # 绘制真实值（蓝色空心圆圈）
+            ax.scatter(0.5, real_value, s=100, facecolors='none', edgecolors='blue', linewidths=2, label=f'Real {param}')
+            
+            # 绘制回推值（红色空心圆圈）
+            if recon_value < y_min or recon_value > y_max:
+                # 超出范围，用橙色圆圈
+                ax.scatter(0.5, recon_value, s=100, facecolors='none', edgecolors='orange', linewidths=2, label=f'Backward {param}')
+                ax.text(0.5, recon_value, f'Out of range', 
+                         ha='center', va='bottom' if recon_value > y_max else 'top',
+                         fontsize=8, color='red')
+            else:
+                ax.scatter(0.5, recon_value, s=100, facecolors='none', edgecolors='red', linewidths=2, label=f'Backward {param}')
+            
+            # 设置Y轴范围
+            ax.set_ylim((y_min * 0.95, y_max * 1.05))
+        
+        # 设置子图属性
+        ax.set_title(f'{param}', fontsize=12)
+        ax.set_ylabel('Parameter Value (mm)', fontsize=10)
+        ax.set_xticks([])
+        ax.set_xlim((0, 1))
+        
+        ax.legend(fontsize=8)
+        ax.grid(True, alpha=0.3, axis='y')
+    
+    # 创建实部曲线子图（第二行，跨越所有5列）
+    ax2 = fig.add_subplot(gs[1, :])
+    ax2.plot(freq_data[:101], real_y[0, :101], 'blue', linewidth=2, label='Original Re(S11)')
+    ax2.plot(freq_data[:101], predicted_y[0, :101], 'red', linestyle='--', linewidth=2, label='Predicted Re(S11)')
     ax2.set_xlabel('Frequency (GHz)')
     ax2.set_ylabel('Re(S11)')
     ax2.set_title(f'Real Part Prediction Consistency - Sample {i+1}')
+    ax2.set_xlim((10.5, 11.5))
     ax2.legend()
     ax2.grid(True, alpha=0.3)
     
-    # 第三个子图：虚部对比
-    ax3.plot(freq_data[:101], real_y[0, 101:], label='Real Im(S11)', color='green', linewidth=2)
-    ax3.plot(freq_data[:101], predicted_y[0, 101:], label='Predicted Im(S11)', color='orange', linestyle='--', linewidth=2)
+    # 创建虚部曲线子图（第三行，跨越所有5列）
+    ax3 = fig.add_subplot(gs[2, :])
+    ax3.plot(freq_data[:101], real_y[0, 101:], 'green', linewidth=2, label='Original Im(S11)')
+    ax3.plot(freq_data[:101], predicted_y[0, 101:], 'orange', linestyle='--', linewidth=2, label='Predicted Im(S11)')
     ax3.set_xlabel('Frequency (GHz)')
     ax3.set_ylabel('Im(S11)')
     ax3.set_title(f'Imaginary Part Prediction Consistency - Sample {i+1}')
+    ax3.set_xlim((10.5, 11.5))
     ax3.legend()
     ax3.grid(True, alpha=0.3)
     
-    plt.tight_layout()
-    plt.savefig(os.path.join(checkpoint_dir, f'fixed_y_backward_x_{i+1}.png'), dpi=150, bbox_inches='tight')
+    # 设置整个图表的标题
+    fig.suptitle(f'Fixed Y Backward X - Sample {i+1}', fontsize=16, y=0.98)
+    
+    # 调整布局
+    plt.tight_layout(rect=(0, 0, 1, 0.95))
+    plt.savefig(os.path.join(checkpoint_dir, f'fixed_y_backward_x_{i+1}.png'), dpi=300, bbox_inches='tight')
     plt.close()
     print(f'  Plot saved for sample {i+1}: fixed_y_backward_x_{i+1}.png')
 
