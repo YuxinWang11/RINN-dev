@@ -459,8 +459,9 @@ def main():
     )
     
     # 运行优化
-    n_trials = 50  # 尝试次数
-    study.optimize(objective, n_trials=n_trials, gc_after_trial=True)
+    n_trials = 5  # 快速测试：5次尝试
+    print(f"\n开始贝叶斯优化，计划运行 {n_trials} 次尝试...")
+    study.optimize(objective, n_trials=n_trials, gc_after_trial=True, show_progress_bar=True)
     
     # 保存结果
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
