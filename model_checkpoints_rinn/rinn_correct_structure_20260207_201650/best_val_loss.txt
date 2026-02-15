@@ -1,6 +1,0 @@
-Best Validation Loss: 0.100099
-Training Time: 0:01:16.746998
-Epoch: 132
-Best Epoch: 133
-Backward Prediction Avg Relative Error: 0.022579
-Backward Prediction Accuracy: 0.977421

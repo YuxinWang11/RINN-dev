@@ -1,4 +1,0 @@
-Best Validation Loss: 0.103271
-Training Time: 0:06:19.567045
-Best Epoch: 120
-Validation Set Average NMSE: 0.031693

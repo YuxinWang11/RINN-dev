@@ -1,3 +1,0 @@
-Best Validation Loss: 0.100099
-Training Time: 0:01:14.163914
-Epoch: 149

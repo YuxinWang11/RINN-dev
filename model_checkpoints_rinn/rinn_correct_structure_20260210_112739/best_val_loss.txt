@@ -1,6 +1,0 @@
-Best Validation Loss: 0.092354
-Training Time: 0:04:33.311845
-Best Epoch: 139
-Validation Set Average NMSE: 0.029124
-Backward Prediction Avg Relative Error: 0.028904
-Backward Prediction Accuracy: 0.971096

@@ -1,0 +1,153 @@
+/opt/anaconda3/lib/python3.13/site-packages/torch/nn/utils/weight_norm.py:144: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+本次训练输出文件夹: model_checkpoints_rinn/rinn_correct_structure_20260214_233744
+未检测到GPU设备，使用CPU进行计算
+
+=== 加载数据 ===
+正在加载数据文件: data/S Parameter Plot300.csv
+  X特征形状: (300, 5)
+  X特征示例 (第一个样本): [3.7532 4.5355 3.9006 3.2792 3.0998]
+  频率点数: 101
+  频率范围: 10.5 GHz - 11.5 GHz
+  Y数据形状: (300, 202) (101维实部 + 101维虚部)
+正在加载数据文件: data/S Parameter Plot200.csv
+  X特征形状: (200, 5)
+  X特征示例 (第一个样本): [3.809  4.2613 3.9069 3.2778 2.96  ]
+  频率点数: 101
+  频率范围: 10.5 GHz - 11.5 GHz
+  Y数据形状: (200, 202) (101维实部 + 101维虚部)
+正在加载数据文件: data/S Parameter Plot1perfect.csv
+  X特征形状: (1, 5)
+  X特征示例 (第一个样本): [3.757 4.552 4.125 3.114 2.893]
+  频率点数: 101
+  频率范围: 10.5 GHz - 11.5 GHz
+  Y数据形状: (1, 202) (101维实部 + 101维虚部)
+合并后总样本数: 501
+
+训练集样本数: 400
+验证集样本数: 101
+
+数据归一化方法: robust
+
+归一化方法: robust
+X训练集归一化后均值: -0.010388, 标准差: 0.586635
+X验证集归一化后均值: -0.009338, 标准差: 0.574615
+Y训练集归一化后均值: -0.011397, 标准差: 0.731657
+Y验证集归一化后均值: -0.035333, 标准差: 0.735446
+X训练集是否包含NaN: False
+X训练集是否包含无穷大: False
+X验证集是否包含NaN: False
+X验证集是否包含无穷大: False
+Y训练集是否包含NaN: False
+Y训练集是否包含无穷大: False
+Y验证集是否包含NaN: False
+Y验证集是否包含无穷大: False
+X训练集归一化后最小值: -1.122000, 最大值: 1.127886
+X验证集归一化后最小值: -1.103893, 最大值: 1.127886
+Y训练集归一化后最小值: -3.806318, 最大值: 3.864165
+Y验证集归一化后最小值: -3.806318, 最大值: 3.864165
+
+=== 维度处理与数据结构 ===
+X维度: 5, Y维度: 202, Z维度: 5
+左侧输入维度: 207 (X: 5 + 零填充: 202)
+右侧输入维度: 207 (Y: 202 + Z: 5)
+总输入/输出维度: 207 (左右侧维度相同)
+Affine coupling比率: 0.12
+
+数据集划分:
+  训练集: 400 样本
+  验证集: 101 样本
+  注意：Z将在每个epoch重新采样，增强模型泛化能力
+
+=== 模型定义 ===
+模型输入/输出维度: 207
+左侧输入: X(5) + 零填充(202)
+右侧输入: Y(202) + Z(5)
+模型参数总数: 4014246
+
+=== 训练配置 ===
+开始训练...
+Epoch [1/300], Train Loss: 3.573711, Y Loss: 1.810979, X Loss: 0.000001, Z Loss: 0.179714, Time: 1.27s
+          Val Loss: 1.871354, Y Loss: 0.930041, X Loss: 0.017310, Z Loss: 0.207711, Time: 0.11s
+  -> 准备保存最佳模型到: model_checkpoints_rinn/rinn_correct_structure_20260214_233744/best_model.pth
+  -> 目录是否存在: True
+  -> 目录权限: 755
+  -> 保存成功! 文件大小: 49713897 bytes
+  -> 保存最佳模型 (Val Loss: 1.871354, Epoch: 1)
+Epoch [2/300], Train Loss: 1.396406, Y Loss: 0.681977, X Loss: 0.032670, Z Loss: 0.191379, Time: 1.20s
+          Val Loss: 1.196431, Y Loss: 0.548549, X Loss: 0.135391, Z Loss: 0.049034, Time: 0.11s
+  -> 准备保存最佳模型到: model_checkpoints_rinn/rinn_correct_structure_20260214_233744/best_model.pth
+  -> 目录是否存在: True
+  -> 目录权限: 755
+  -> 保存成功! 文件大小: 49713897 bytes
+  -> 保存最佳模型 (Val Loss: 1.196431, Epoch: 2)
+Epoch [3/300], Train Loss: 0.989435, Y Loss: 0.459777, X Loss: 0.076039, Z Loss: 0.140614, Time: 1.18s
+          Val Loss: 0.940233, Y Loss: 0.445122, X Loss: 0.068465, Z Loss: 0.064281, Time: 0.11s
+  -> 准备保存最佳模型到: model_checkpoints_rinn/rinn_correct_structure_20260214_233744/best_model.pth
+  -> 目录是否存在: True
+  -> 目录权限: 755
+  -> 保存成功! 文件大小: 49713897 bytes
+  -> 保存最佳模型 (Val Loss: 0.940233, Epoch: 3)
+Epoch [4/300], Train Loss: 0.770289, Y Loss: 0.358148, X Loss: 0.048163, Z Loss: 0.157941, Time: 1.18s
+          Val Loss: 0.800224, Y Loss: 0.358404, X Loss: 0.102374, Z Loss: 0.068266, Time: 0.11s
+  -> 准备保存最佳模型到: model_checkpoints_rinn/rinn_correct_structure_20260214_233744/best_model.pth
+  -> 目录是否存在: True
+  -> 目录权限: 755
+  -> 保存成功! 文件大小: 49713897 bytes
+  -> 保存最佳模型 (Val Loss: 0.800224, Epoch: 4)
+Epoch [5/300], Train Loss: 0.652893, Y Loss: 0.301432, X Loss: 0.044038, Z Loss: 0.141645, Time: 1.19s
+          Val Loss: 0.754558, Y Loss: 0.322831, X Loss: 0.110929, Z Loss: 0.158079, Time: 0.11s
+  -> 准备保存最佳模型到: model_checkpoints_rinn/rinn_correct_structure_20260214_233744/best_model.pth
+  -> 目录是否存在: True
+  -> 目录权限: 755
+  -> 保存成功! 文件大小: 49713897 bytes
+  -> 保存最佳模型 (Val Loss: 0.754558, Epoch: 5)
+Epoch [6/300], Train Loss: 0.579170, Y Loss: 0.264294, X Loss: 0.052206, Z Loss: 0.098118, Time: 1.18s
+          Val Loss: 0.666023, Y Loss: 0.293799, X Loss: 0.082626, Z Loss: 0.116196, Time: 0.11s
+  -> 准备保存最佳模型到: model_checkpoints_rinn/rinn_correct_structure_20260214_233744/best_model.pth
+  -> 目录是否存在: True
+  -> 目录权限: 755
+  -> 保存成功! 文件大小: 49713897 bytes
+  -> 保存最佳模型 (Val Loss: 0.666023, Epoch: 6)
+Epoch [7/300], Train Loss: 0.503921, Y Loss: 0.237283, X Loss: 0.024324, Z Loss: 0.104770, Time: 1.28s
+          Val Loss: 0.638407, Y Loss: 0.258945, X Loss: 0.127587, Z Loss: 0.128912, Time: 0.11s
+  -> 准备保存最佳模型到: model_checkpoints_rinn/rinn_correct_structure_20260214_233744/best_model.pth
+  -> 目录是否存在: True
+  -> 目录权限: 755
+  -> 保存成功! 文件大小: 49713897 bytes
+  -> 保存最佳模型 (Val Loss: 0.638407, Epoch: 7)
+Epoch [8/300], Train Loss: 0.483988, Y Loss: 0.215422, X Loss: 0.043362, Z Loss: 0.140673, Time: 1.18s
+          Val Loss: 0.572870, Y Loss: 0.249435, X Loss: 0.059162, Z Loss: 0.189166, Time: 0.11s
+  -> 准备保存最佳模型到: model_checkpoints_rinn/rinn_correct_structure_20260214_233744/best_model.pth
+  -> 目录是否存在: True
+  -> 目录权限: 755
+  -> 保存成功! 文件大小: 49713897 bytes
+  -> 保存最佳模型 (Val Loss: 0.572870, Epoch: 8)
+Epoch [9/300], Train Loss: 0.384496, Y Loss: 0.179366, X Loss: 0.022450, Z Loss: 0.079864, Time: 1.21s
+          Val Loss: 0.420272, Y Loss: 0.200157, X Loss: 0.000001, Z Loss: 0.156566, Time: 0.12s
+  -> 准备保存最佳模型到: model_checkpoints_rinn/rinn_correct_structure_20260214_233744/best_model.pth
+  -> 目录是否存在: True
+  -> 目录权限: 755
+  -> 保存成功! 文件大小: 49713897 bytes
+  -> 保存最佳模型 (Val Loss: 0.420272, Epoch: 9)
+Epoch [10/300], Train Loss: 0.338741, Y Loss: 0.153275, X Loss: 0.019948, Z Loss: 0.119744, Time: 1.18s
+          Val Loss: 0.368367, Y Loss: 0.176955, X Loss: 0.000001, Z Loss: 0.121182, Time: 0.11s
+  -> 准备保存最佳模型到: model_checkpoints_rinn/rinn_correct_structure_20260214_233744/best_model.pth
+  -> 目录是否存在: True
+  -> 目录权限: 755
+  -> 保存成功! 文件大小: 49713897 bytes
+  -> 保存最佳模型 (Val Loss: 0.368367, Epoch: 10)
+Epoch [11/300], Train Loss: 0.322226, Y Loss: 0.142213, X Loss: 0.019945, Z Loss: 0.147391, Time: 1.17s
+          Val Loss: 0.428108, Y Loss: 0.163961, X Loss: 0.087282, Z Loss: 0.180878, Time: 0.11s
+Epoch [12/300], Train Loss: 0.346201, Y Loss: 0.143741, X Loss: 0.051548, Z Loss: 0.115806, Time: 1.17s
+          Val Loss: 0.394156, Y Loss: 0.183544, X Loss: 0.013796, Z Loss: 0.127643, Time: 0.11s
+Epoch [13/300], Train Loss: 0.313605, Y Loss: 0.126806, X Loss: 0.053576, Z Loss: 0.109263, Time: 1.20s
+          Val Loss: 0.411701, Y Loss: 0.153938, X Loss: 0.114750, Z Loss: 0.072048, Time: 0.11s
+Epoch [14/300], Train Loss: 0.301024, Y Loss: 0.125777, X Loss: 0.040770, Z Loss: 0.110899, Time: 1.22s
+          Val Loss: 0.328810, Y Loss: 0.141249, X Loss: 0.034777, Z Loss: 0.125088, Time: 0.11s
+  -> 准备保存最佳模型到: model_checkpoints_rinn/rinn_correct_structure_20260214_233744/best_model.pth
+  -> 目录是否存在: True
+  -> 目录权限: 755
+  -> 保存成功! 文件大小: 49713897 bytes
+  -> 保存最佳模型 (Val Loss: 0.328810, Epoch: 14)
+Epoch [15/300], Train Loss: 0.283813, Y Loss: 0.119758, X Loss: 0.031172, Z Loss: 0.125523, Time: 1.18s
