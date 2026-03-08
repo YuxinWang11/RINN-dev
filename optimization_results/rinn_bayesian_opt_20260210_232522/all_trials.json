@@ -1,0 +1,97 @@
+[
+  {
+    "number": 0,
+    "value": 0.28070403209754397,
+    "params": {
+      "hidden_dim": 64,
+      "num_blocks": 8,
+      "num_stages": 3,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.19361118426546192,
+      "ratio_x1_x2_inAffine": 0.1201975341512912,
+      "batch_size": 32,
+      "learning_rate": 0.0002607024758370766,
+      "weight_decay": 1.0994335574766194e-06,
+      "weight_y": 1.9548647782429915,
+      "weight_x": 0.8491983767203796,
+      "weight_z": 0.18493564427131048
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 1,
+    "value": 0.29910490146050084,
+    "params": {
+      "hidden_dim": 48,
+      "num_blocks": 4,
+      "num_stages": 2,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.3591670111852695,
+      "ratio_x1_x2_inAffine": 0.18105311308911887,
+      "batch_size": 16,
+      "learning_rate": 5.4041038546473305e-05,
+      "weight_decay": 8.168455894760166e-06,
+      "weight_y": 1.6777639420895203,
+      "weight_x": 0.2797064039425238,
+      "weight_z": 0.3056937753654446
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 2,
+    "value": 0.4893533449906569,
+    "params": {
+      "hidden_dim": 88,
+      "num_blocks": 3,
+      "num_stages": 3,
+      "num_cycles_per_stage": 1,
+      "ratio_toZ_after_flowstage": 0.1390309557911677,
+      "ratio_x1_x2_inAffine": 0.47699849176399994,
+      "batch_size": 16,
+      "learning_rate": 1.5679933916722995e-05,
+      "weight_decay": 2.3359635026261618e-05,
+      "weight_y": 1.1602287406094018,
+      "weight_x": 0.20983441136030095,
+      "weight_z": 0.29807076404450805
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 3,
+    "value": 0.26888592541217804,
+    "params": {
+      "hidden_dim": 32,
+      "num_blocks": 8,
+      "num_stages": 2,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.28702664565364655,
+      "ratio_x1_x2_inAffine": 0.28403060953001485,
+      "batch_size": 64,
+      "learning_rate": 0.0003550304858128307,
+      "weight_decay": 7.568292060167621e-05,
+      "weight_y": 1.8422410256414732,
+      "weight_x": 0.6381099809299766,
+      "weight_z": 0.4687496940092467
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 4,
+    "value": 0.34912436512800366,
+    "params": {
+      "hidden_dim": 40,
+      "num_blocks": 4,
+      "num_stages": 1,
+      "num_cycles_per_stage": 1,
+      "ratio_toZ_after_flowstage": 0.3332063738136892,
+      "ratio_x1_x2_inAffine": 0.17210706429825318,
+      "batch_size": 16,
+      "learning_rate": 0.00012172847081122418,
+      "weight_decay": 1.9135880487692305e-06,
+      "weight_y": 1.7032954711310595,
+      "weight_x": 0.16709557931179375,
+      "weight_z": 0.4947547746402069
+    },
+    "state": "COMPLETE"
+  }
+]

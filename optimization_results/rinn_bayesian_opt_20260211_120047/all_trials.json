@@ -1,0 +1,952 @@
+[
+  {
+    "number": 0,
+    "value": 0.28070403209754397,
+    "params": {
+      "hidden_dim": 64,
+      "num_blocks": 8,
+      "num_stages": 3,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.19361118426546192,
+      "ratio_x1_x2_inAffine": 0.1201975341512912,
+      "batch_size": 32,
+      "learning_rate": 0.0002607024758370766,
+      "weight_decay": 1.0994335574766194e-06,
+      "weight_y": 1.9548647782429915,
+      "weight_x": 0.8491983767203796,
+      "weight_z": 0.18493564427131048
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 1,
+    "value": 0.29910490146050084,
+    "params": {
+      "hidden_dim": 48,
+      "num_blocks": 4,
+      "num_stages": 2,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.3591670111852695,
+      "ratio_x1_x2_inAffine": 0.18105311308911887,
+      "batch_size": 16,
+      "learning_rate": 5.4041038546473305e-05,
+      "weight_decay": 8.168455894760166e-06,
+      "weight_y": 1.6777639420895203,
+      "weight_x": 0.2797064039425238,
+      "weight_z": 0.3056937753654446
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 2,
+    "value": 0.4893533449906569,
+    "params": {
+      "hidden_dim": 88,
+      "num_blocks": 3,
+      "num_stages": 3,
+      "num_cycles_per_stage": 1,
+      "ratio_toZ_after_flowstage": 0.1390309557911677,
+      "ratio_x1_x2_inAffine": 0.47699849176399994,
+      "batch_size": 16,
+      "learning_rate": 1.5679933916722995e-05,
+      "weight_decay": 2.3359635026261618e-05,
+      "weight_y": 1.1602287406094018,
+      "weight_x": 0.20983441136030095,
+      "weight_z": 0.29807076404450805
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 3,
+    "value": 0.26888592541217804,
+    "params": {
+      "hidden_dim": 32,
+      "num_blocks": 8,
+      "num_stages": 2,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.28702664565364655,
+      "ratio_x1_x2_inAffine": 0.28403060953001485,
+      "batch_size": 64,
+      "learning_rate": 0.0003550304858128307,
+      "weight_decay": 7.568292060167621e-05,
+      "weight_y": 1.8422410256414732,
+      "weight_x": 0.6381099809299766,
+      "weight_z": 0.4687496940092467
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 4,
+    "value": 0.34912436512800366,
+    "params": {
+      "hidden_dim": 40,
+      "num_blocks": 4,
+      "num_stages": 1,
+      "num_cycles_per_stage": 1,
+      "ratio_toZ_after_flowstage": 0.3332063738136892,
+      "ratio_x1_x2_inAffine": 0.17210706429825318,
+      "batch_size": 16,
+      "learning_rate": 0.00012172847081122418,
+      "weight_decay": 1.9135880487692305e-06,
+      "weight_y": 1.7032954711310595,
+      "weight_x": 0.16709557931179375,
+      "weight_z": 0.4947547746402069
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 5,
+    "value": 0.4849799642196068,
+    "params": {
+      "hidden_dim": 112,
+      "num_blocks": 4,
+      "num_stages": 1,
+      "num_cycles_per_stage": 3,
+      "ratio_toZ_after_flowstage": 0.5241144063085703,
+      "ratio_x1_x2_inAffine": 0.3780532256184443,
+      "batch_size": 16,
+      "learning_rate": 1.70505392602693e-05,
+      "weight_decay": 5.3236175947515e-05,
+      "weight_y": 1.4349471902413369,
+      "weight_x": 0.39780822236738433,
+      "weight_z": 0.12542334011440948
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 6,
+    "value": 0.3393906429409981,
+    "params": {
+      "hidden_dim": 64,
+      "num_blocks": 4,
+      "num_stages": 3,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.6323276455457959,
+      "ratio_x1_x2_inAffine": 0.2624967163228772,
+      "batch_size": 64,
+      "learning_rate": 0.0001326033192269654,
+      "weight_decay": 3.482846706526883e-05,
+      "weight_y": 1.2406933945465861,
+      "weight_x": 0.5704595464437947,
+      "weight_z": 0.27101640734341986
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 7,
+    "value": 0.07043021086316842,
+    "params": {
+      "hidden_dim": 32,
+      "num_blocks": 3,
+      "num_stages": 1,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.288613588645796,
+      "ratio_x1_x2_inAffine": 0.27885681102411625,
+      "batch_size": 16,
+      "learning_rate": 0.0003244160088734161,
+      "weight_decay": 2.868113482103008e-06,
+      "weight_y": 0.6154698647431895,
+      "weight_x": 0.3607763076223912,
+      "weight_z": 0.16448851490160177
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 8,
+    "value": 0.13429547387820023,
+    "params": {
+      "hidden_dim": 128,
+      "num_blocks": 7,
+      "num_stages": 3,
+      "num_cycles_per_stage": 3,
+      "ratio_toZ_after_flowstage": 0.5822032461394686,
+      "ratio_x1_x2_inAffine": 0.13395652649871614,
+      "batch_size": 16,
+      "learning_rate": 0.0006197015748809143,
+      "weight_decay": 4.32520752538653e-06,
+      "weight_y": 0.6650778867915151,
+      "weight_x": 0.30514164628774754,
+      "weight_z": 0.27084311545050255
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 9,
+    "value": 0.5561758503317833,
+    "params": {
+      "hidden_dim": 112,
+      "num_blocks": 8,
+      "num_stages": 1,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.35044660188926735,
+      "ratio_x1_x2_inAffine": 0.14994851471182863,
+      "batch_size": 64,
+      "learning_rate": 4.4300218067679785e-05,
+      "weight_decay": 1.0903884523201118e-05,
+      "weight_y": 1.5545284383427669,
+      "weight_x": 0.42726664214136456,
+      "weight_z": 0.4887128330883843
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 10,
+    "value": 0.17298261714833124,
+    "params": {
+      "hidden_dim": 80,
+      "num_blocks": 6,
+      "num_stages": 4,
+      "num_cycles_per_stage": 1,
+      "ratio_toZ_after_flowstage": 0.4675328355368811,
+      "ratio_x1_x2_inAffine": 0.32727683535448737,
+      "batch_size": 32,
+      "learning_rate": 0.0008667002236339257,
+      "weight_decay": 2.9476726526142578e-06,
+      "weight_y": 0.5184667543474062,
+      "weight_x": 0.970782790938596,
+      "weight_z": 0.10371782721807632
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 11,
+    "value": 0.11293368385388301,
+    "params": {
+      "hidden_dim": 128,
+      "num_blocks": 6,
+      "num_stages": 4,
+      "num_cycles_per_stage": 3,
+      "ratio_toZ_after_flowstage": 0.6937798454854938,
+      "ratio_x1_x2_inAffine": 0.05394367905425819,
+      "batch_size": 16,
+      "learning_rate": 0.0008408263376816082,
+      "weight_decay": 4.92941134341046e-06,
+      "weight_y": 0.5463158157103336,
+      "weight_x": 0.4013690682693617,
+      "weight_z": 0.21526152932781262
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 12,
+    "value": 0.13434190503679788,
+    "params": {
+      "hidden_dim": 96,
+      "num_blocks": 6,
+      "num_stages": 4,
+      "num_cycles_per_stage": 3,
+      "ratio_toZ_after_flowstage": 0.6897448594837681,
+      "ratio_x1_x2_inAffine": 0.05964782802348556,
+      "batch_size": 16,
+      "learning_rate": 0.0003633304070722275,
+      "weight_decay": 7.073379871259622e-06,
+      "weight_y": 0.8623323994705098,
+      "weight_x": 0.46086037271383956,
+      "weight_z": 0.19940718226568344
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 13,
+    "value": 0.16943286158717596,
+    "params": {
+      "hidden_dim": 128,
+      "num_blocks": 5,
+      "num_stages": 2,
+      "num_cycles_per_stage": 3,
+      "ratio_toZ_after_flowstage": 0.24841725665495645,
+      "ratio_x1_x2_inAffine": 0.2314677117808196,
+      "batch_size": 16,
+      "learning_rate": 0.0009734786532859173,
+      "weight_decay": 3.561475766002242e-06,
+      "weight_y": 0.9070997662744854,
+      "weight_x": 0.6955931931555672,
+      "weight_z": 0.1951868371851705
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 14,
+    "value": 0.0932760973675893,
+    "params": {
+      "hidden_dim": 64,
+      "num_blocks": 5,
+      "num_stages": 4,
+      "num_cycles_per_stage": 3,
+      "ratio_toZ_after_flowstage": 0.4425805913793485,
+      "ratio_x1_x2_inAffine": 0.3845715669238361,
+      "batch_size": 16,
+      "learning_rate": 0.00020683153320436286,
+      "weight_decay": 1.0093012091023583e-06,
+      "weight_y": 0.5040757008114058,
+      "weight_x": 0.11096316516349503,
+      "weight_z": 0.4003988944050103
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 15,
+    "value": 0.1843089291027614,
+    "params": {
+      "hidden_dim": 56,
+      "num_blocks": 3,
+      "num_stages": 2,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.45158093534140403,
+      "ratio_x1_x2_inAffine": 0.4085203732248698,
+      "batch_size": 32,
+      "learning_rate": 0.0002050258372767583,
+      "weight_decay": 1.1022328429941525e-06,
+      "weight_y": 0.8342768691355888,
+      "weight_x": 0.1326743319089066,
+      "weight_z": 0.4007926503281956
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 16,
+    "value": 0.21758719419057554,
+    "params": {
+      "hidden_dim": 32,
+      "num_blocks": 5,
+      "num_stages": 4,
+      "num_cycles_per_stage": 3,
+      "ratio_toZ_after_flowstage": 0.4257539253197571,
+      "ratio_x1_x2_inAffine": 0.37397122263634097,
+      "batch_size": 16,
+      "learning_rate": 5.108318015419406e-05,
+      "weight_decay": 1.985223145054233e-06,
+      "weight_y": 1.0091843346714406,
+      "weight_x": 0.1110303260141654,
+      "weight_z": 0.3693386818617739
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 17,
+    "value": 0.1957212038911306,
+    "params": {
+      "hidden_dim": 72,
+      "num_blocks": 3,
+      "num_stages": 1,
+      "num_cycles_per_stage": 1,
+      "ratio_toZ_after_flowstage": 0.25869372856639666,
+      "ratio_x1_x2_inAffine": 0.48883196728836853,
+      "batch_size": 16,
+      "learning_rate": 0.00017893740215690302,
+      "weight_decay": 1.8425393342431494e-06,
+      "weight_y": 0.7083350223506751,
+      "weight_x": 0.2897370272707969,
+      "weight_z": 0.39743099030235546
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 18,
+    "value": 0.42769329622387886,
+    "params": {
+      "hidden_dim": 48,
+      "num_blocks": 5,
+      "num_stages": 2,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.5107668947462212,
+      "ratio_x1_x2_inAffine": 0.31867010376774796,
+      "batch_size": 64,
+      "learning_rate": 8.662701958886902e-05,
+      "weight_decay": 1.219523952967143e-05,
+      "weight_y": 1.0849127093191229,
+      "weight_x": 0.5226783291218552,
+      "weight_z": 0.36386513551118016
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 19,
+    "value": 0.10602224192449025,
+    "params": {
+      "hidden_dim": 48,
+      "num_blocks": 7,
+      "num_stages": 3,
+      "num_cycles_per_stage": 3,
+      "ratio_toZ_after_flowstage": 0.1320526283867835,
+      "ratio_x1_x2_inAffine": 0.43295594766752554,
+      "batch_size": 32,
+      "learning_rate": 0.00047385527448380864,
+      "weight_decay": 1.1184037766341627e-06,
+      "weight_y": 0.6995753932017413,
+      "weight_x": 0.24790928727355216,
+      "weight_z": 0.4422351096047139
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 20,
+    "value": 0.22692854358599737,
+    "params": {
+      "hidden_dim": 72,
+      "num_blocks": 3,
+      "num_stages": 4,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.39940562838781024,
+      "ratio_x1_x2_inAffine": 0.22514873715614794,
+      "batch_size": 16,
+      "learning_rate": 8.749405430275866e-05,
+      "weight_decay": 2.482314033688908e-06,
+      "weight_y": 1.33943262892516,
+      "weight_x": 0.33371413251797843,
+      "weight_z": 0.32528503422142196
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 21,
+    "value": 0.13641016611031123,
+    "params": {
+      "hidden_dim": 48,
+      "num_blocks": 7,
+      "num_stages": 3,
+      "num_cycles_per_stage": 3,
+      "ratio_toZ_after_flowstage": 0.10136424067417016,
+      "ratio_x1_x2_inAffine": 0.4192557891066816,
+      "batch_size": 32,
+      "learning_rate": 0.0005001887010037035,
+      "weight_decay": 1.0016634751966817e-06,
+      "weight_y": 0.6732146704906785,
+      "weight_x": 0.21516267136941153,
+      "weight_z": 0.43761820193453094
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 22,
+    "value": 0.12853714770504407,
+    "params": {
+      "hidden_dim": 40,
+      "num_blocks": 7,
+      "num_stages": 3,
+      "num_cycles_per_stage": 3,
+      "ratio_toZ_after_flowstage": 0.17993692893740537,
+      "ratio_x1_x2_inAffine": 0.4403659576849728,
+      "batch_size": 32,
+      "learning_rate": 0.0003298170881546522,
+      "weight_decay": 1.3745411072835117e-06,
+      "weight_y": 0.5228494857413777,
+      "weight_x": 0.2175292715544624,
+      "weight_z": 0.4417884796726358
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 23,
+    "value": 0.16488325276545115,
+    "params": {
+      "hidden_dim": 56,
+      "num_blocks": 7,
+      "num_stages": 4,
+      "num_cycles_per_stage": 3,
+      "ratio_toZ_after_flowstage": 0.1881932864047918,
+      "ratio_x1_x2_inAffine": 0.3463996417320593,
+      "batch_size": 32,
+      "learning_rate": 0.0004603946746263082,
+      "weight_decay": 1.6539178701411944e-06,
+      "weight_y": 0.7533359756697422,
+      "weight_x": 0.36564009047054535,
+      "weight_z": 0.15371352191855045
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 24,
+    "value": 0.19284649406160628,
+    "params": {
+      "hidden_dim": 32,
+      "num_blocks": 5,
+      "num_stages": 3,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.30129365236974015,
+      "ratio_x1_x2_inAffine": 0.45140056644943044,
+      "batch_size": 32,
+      "learning_rate": 0.0001980448859654974,
+      "weight_decay": 2.375503901991814e-06,
+      "weight_y": 0.966511680375127,
+      "weight_x": 0.1093135950721868,
+      "weight_z": 0.4346759486483631
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 25,
+    "value": 0.09185347759297915,
+    "params": {
+      "hidden_dim": 56,
+      "num_blocks": 6,
+      "num_stages": 2,
+      "num_cycles_per_stage": 3,
+      "ratio_toZ_after_flowstage": 0.21993350314235127,
+      "ratio_x1_x2_inAffine": 0.37262074731204686,
+      "batch_size": 32,
+      "learning_rate": 0.0005936222485819312,
+      "weight_decay": 1.4564621861894927e-06,
+      "weight_y": 0.6272347645149933,
+      "weight_x": 0.24718393703226474,
+      "weight_z": 0.23669717415679603
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 26,
+    "value": 0.11042608678914033,
+    "params": {
+      "hidden_dim": 64,
+      "num_blocks": 6,
+      "num_stages": 1,
+      "num_cycles_per_stage": 3,
+      "ratio_toZ_after_flowstage": 0.238510938499256,
+      "ratio_x1_x2_inAffine": 0.29557765338725234,
+      "batch_size": 16,
+      "learning_rate": 0.0006372052815173622,
+      "weight_decay": 6.021334790097573e-06,
+      "weight_y": 0.6107238651861088,
+      "weight_x": 0.4989174477026832,
+      "weight_z": 0.23682183028674056
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 27,
+    "value": 0.07696151389525487,
+    "params": {
+      "hidden_dim": 80,
+      "num_blocks": 4,
+      "num_stages": 2,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.3806694995988027,
+      "ratio_x1_x2_inAffine": 0.38026538488492434,
+      "batch_size": 16,
+      "learning_rate": 0.000273605448494615,
+      "weight_decay": 3.176924783148963e-06,
+      "weight_y": 0.8003498394571125,
+      "weight_x": 0.19410764612734482,
+      "weight_z": 0.241167968075986
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 28,
+    "value": 0.12069050408899784,
+    "params": {
+      "hidden_dim": 88,
+      "num_blocks": 4,
+      "num_stages": 2,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.3849785535896667,
+      "ratio_x1_x2_inAffine": 0.34494866546234965,
+      "batch_size": 64,
+      "learning_rate": 0.0003015147663095658,
+      "weight_decay": 1.506831665957691e-05,
+      "weight_y": 0.7937066199582473,
+      "weight_x": 0.18791829615384759,
+      "weight_z": 0.1577966161197771
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 29,
+    "value": 0.1957753055862018,
+    "params": {
+      "hidden_dim": 104,
+      "num_blocks": 3,
+      "num_stages": 1,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.2230283101502145,
+      "ratio_x1_x2_inAffine": 0.2491320862618984,
+      "batch_size": 32,
+      "learning_rate": 0.0002528861043027233,
+      "weight_decay": 3.6512009921666136e-06,
+      "weight_y": 1.0427077972167107,
+      "weight_x": 0.7807992862320802,
+      "weight_z": 0.2386821081085221
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 30,
+    "value": 0.7493541581290108,
+    "params": {
+      "hidden_dim": 80,
+      "num_blocks": 4,
+      "num_stages": 2,
+      "num_cycles_per_stage": 1,
+      "ratio_toZ_after_flowstage": 0.30680378721842383,
+      "ratio_x1_x2_inAffine": 0.2969988058555995,
+      "batch_size": 32,
+      "learning_rate": 1.0007903936685855e-05,
+      "weight_decay": 3.111954110758973e-06,
+      "weight_y": 0.9235496274287285,
+      "weight_x": 0.36034994782448126,
+      "weight_z": 0.16262001596009965
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 31,
+    "value": 0.09545900672674179,
+    "params": {
+      "hidden_dim": 64,
+      "num_blocks": 5,
+      "num_stages": 2,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.4639334097398371,
+      "ratio_x1_x2_inAffine": 0.3844539061981902,
+      "batch_size": 16,
+      "learning_rate": 0.00015661072884946657,
+      "weight_decay": 1.3777046535229482e-06,
+      "weight_y": 0.6071570073159682,
+      "weight_x": 0.1582022397485372,
+      "weight_z": 0.23520278092824828
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 32,
+    "value": 0.07210863381624222,
+    "params": {
+      "hidden_dim": 72,
+      "num_blocks": 4,
+      "num_stages": 2,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.3701708468437529,
+      "ratio_x1_x2_inAffine": 0.3957636236094237,
+      "batch_size": 16,
+      "learning_rate": 0.00023915111718627634,
+      "weight_decay": 1.4459957774448287e-06,
+      "weight_y": 0.5021169115157609,
+      "weight_x": 0.2655947223431365,
+      "weight_z": 0.2725051556207948
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 33,
+    "value": 0.07093245779665616,
+    "params": {
+      "hidden_dim": 72,
+      "num_blocks": 4,
+      "num_stages": 2,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.3668515611415665,
+      "ratio_x1_x2_inAffine": 0.4629042659648892,
+      "batch_size": 16,
+      "learning_rate": 0.00026052405321797835,
+      "weight_decay": 2.4877833616383793e-06,
+      "weight_y": 0.6017268241782184,
+      "weight_x": 0.26799975166117607,
+      "weight_z": 0.2709431532483808
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 34,
+    "value": 0.09432420134544373,
+    "params": {
+      "hidden_dim": 88,
+      "num_blocks": 4,
+      "num_stages": 2,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.37412019219280135,
+      "ratio_x1_x2_inAffine": 0.4765058001867687,
+      "batch_size": 16,
+      "learning_rate": 0.0002469394084608359,
+      "weight_decay": 4.5835851609131515e-06,
+      "weight_y": 0.7922849840617205,
+      "weight_x": 0.27886459492238647,
+      "weight_z": 0.277780836504314
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 35,
+    "value": 0.1839828880933615,
+    "params": {
+      "hidden_dim": 72,
+      "num_blocks": 3,
+      "num_stages": 1,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.3404351050446897,
+      "ratio_x1_x2_inAffine": 0.4680867439115165,
+      "batch_size": 16,
+      "learning_rate": 0.00010648155154955353,
+      "weight_decay": 2.5446544535871707e-06,
+      "weight_y": 0.5916404826811135,
+      "weight_x": 0.30273395953183163,
+      "weight_z": 0.3176962707971164
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 36,
+    "value": 0.16414215243779695,
+    "params": {
+      "hidden_dim": 96,
+      "num_blocks": 4,
+      "num_stages": 2,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.28946038314893124,
+      "ratio_x1_x2_inAffine": 0.497066990996721,
+      "batch_size": 16,
+      "learning_rate": 0.0003821364921445508,
+      "weight_decay": 8.626950689733076e-06,
+      "weight_y": 1.9815497854043633,
+      "weight_x": 0.5721531782594045,
+      "weight_z": 0.2976312575473932
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 37,
+    "value": 0.3325110307106605,
+    "params": {
+      "hidden_dim": 72,
+      "num_blocks": 3,
+      "num_stages": 1,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.41717986417807557,
+      "ratio_x1_x2_inAffine": 0.39850887945590513,
+      "batch_size": 16,
+      "learning_rate": 6.605927381930809e-05,
+      "weight_decay": 5.6114085972346035e-06,
+      "weight_y": 1.1448151024021214,
+      "weight_x": 0.45377135004172486,
+      "weight_z": 0.33629307908723455
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 38,
+    "value": 0.1202059924029387,
+    "params": {
+      "hidden_dim": 80,
+      "num_blocks": 4,
+      "num_stages": 2,
+      "num_cycles_per_stage": 1,
+      "ratio_toZ_after_flowstage": 0.32876589419896163,
+      "ratio_x1_x2_inAffine": 0.18603235723977313,
+      "batch_size": 16,
+      "learning_rate": 0.00014541308179743785,
+      "weight_decay": 2.1062281206175143e-06,
+      "weight_y": 0.7610064291594605,
+      "weight_x": 0.3628455094781434,
+      "weight_z": 0.25870725885115003
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 39,
+    "value": 0.09958894808705036,
+    "params": {
+      "hidden_dim": 88,
+      "num_blocks": 4,
+      "num_stages": 1,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.5317909252594385,
+      "ratio_x1_x2_inAffine": 0.4539255100956665,
+      "batch_size": 16,
+      "learning_rate": 0.0002619315707490914,
+      "weight_decay": 3.6804640137794308e-06,
+      "weight_y": 0.7204337372150328,
+      "weight_x": 0.24359966846120262,
+      "weight_z": 0.2938981765787433
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 40,
+    "value": 0.1298078797184504,
+    "params": {
+      "hidden_dim": 96,
+      "num_blocks": 3,
+      "num_stages": 2,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.3655284360595008,
+      "ratio_x1_x2_inAffine": 0.3578450605069104,
+      "batch_size": 16,
+      "learning_rate": 0.00011989994617859439,
+      "weight_decay": 2.844624700732689e-05,
+      "weight_y": 0.8657638952978715,
+      "weight_x": 0.17928693711798432,
+      "weight_z": 0.21427400085069664
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 41,
+    "value": 0.06328532300316371,
+    "params": {
+      "hidden_dim": 56,
+      "num_blocks": 4,
+      "num_stages": 2,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.27301502640082637,
+      "ratio_x1_x2_inAffine": 0.4209290581569667,
+      "batch_size": 16,
+      "learning_rate": 0.0006593199134180023,
+      "weight_decay": 1.4957098540578973e-06,
+      "weight_y": 0.6264762732728009,
+      "weight_x": 0.23295904832276398,
+      "weight_z": 0.25354623251913566
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 42,
+    "value": 0.25107399775431705,
+    "params": {
+      "hidden_dim": 40,
+      "num_blocks": 4,
+      "num_stages": 2,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.3175554736935024,
+      "ratio_x1_x2_inAffine": 0.418824304010226,
+      "batch_size": 16,
+      "learning_rate": 3.30978095072058e-05,
+      "weight_decay": 1.643598301938484e-06,
+      "weight_y": 0.5917471757887838,
+      "weight_x": 0.3370751632853851,
+      "weight_z": 0.25616487869009585
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 43,
+    "value": 0.06474079406605317,
+    "params": {
+      "hidden_dim": 56,
+      "num_blocks": 4,
+      "num_stages": 2,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.2715474025382033,
+      "ratio_x1_x2_inAffine": 0.31270982582232926,
+      "batch_size": 16,
+      "learning_rate": 0.00039840837103388715,
+      "weight_decay": 2.48938647008341e-06,
+      "weight_y": 0.6561943883297598,
+      "weight_x": 0.2563971582125507,
+      "weight_z": 0.17996994325272728
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 44,
+    "value": 0.07616573042021348,
+    "params": {
+      "hidden_dim": 56,
+      "num_blocks": 4,
+      "num_stages": 2,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.2735625142214137,
+      "ratio_x1_x2_inAffine": 0.3176753061690648,
+      "batch_size": 16,
+      "learning_rate": 0.0007033832375916355,
+      "weight_decay": 8.250284652052558e-05,
+      "weight_y": 0.6669548977506262,
+      "weight_x": 0.41476799404850306,
+      "weight_z": 0.13372098549349057
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 45,
+    "value": 0.1558296032823049,
+    "params": {
+      "hidden_dim": 40,
+      "num_blocks": 3,
+      "num_stages": 1,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.3489668909329257,
+      "ratio_x1_x2_inAffine": 0.28145272529074394,
+      "batch_size": 16,
+      "learning_rate": 0.000404878029129961,
+      "weight_decay": 2.65390998657494e-06,
+      "weight_y": 1.8237371430641904,
+      "weight_x": 0.2638185710026476,
+      "weight_z": 0.18251677557658516
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 46,
+    "value": 0.08228313270956278,
+    "params": {
+      "hidden_dim": 64,
+      "num_blocks": 5,
+      "num_stages": 3,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.2717542921446597,
+      "ratio_x1_x2_inAffine": 0.21403921629466108,
+      "batch_size": 64,
+      "learning_rate": 0.0005039854296757599,
+      "weight_decay": 1.3266221677406553e-06,
+      "weight_y": 0.5470282828810276,
+      "weight_x": 0.3251509601749383,
+      "weight_z": 0.17287093793503527
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 47,
+    "value": 0.20208441867278173,
+    "params": {
+      "hidden_dim": 48,
+      "num_blocks": 4,
+      "num_stages": 2,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.21673622649739602,
+      "ratio_x1_x2_inAffine": 0.2596389879885251,
+      "batch_size": 16,
+      "learning_rate": 0.0007253959401040053,
+      "weight_decay": 2.0091856390344186e-06,
+      "weight_y": 1.5783358310326094,
+      "weight_x": 0.9986828190179265,
+      "weight_z": 0.11648692021513957
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 48,
+    "value": 0.10352953437429208,
+    "params": {
+      "hidden_dim": 56,
+      "num_blocks": 3,
+      "num_stages": 1,
+      "num_cycles_per_stage": 1,
+      "ratio_toZ_after_flowstage": 0.16283888828039778,
+      "ratio_x1_x2_inAffine": 0.46601396129342626,
+      "batch_size": 16,
+      "learning_rate": 0.00033671896233176084,
+      "weight_decay": 4.650458701332334e-05,
+      "weight_y": 0.5465637401822864,
+      "weight_x": 0.1566348378775751,
+      "weight_z": 0.20906817053939078
+    },
+    "state": "COMPLETE"
+  },
+  {
+    "number": 49,
+    "value": 0.14284823505351177,
+    "params": {
+      "hidden_dim": 72,
+      "num_blocks": 5,
+      "num_stages": 2,
+      "num_cycles_per_stage": 2,
+      "ratio_toZ_after_flowstage": 0.4882391952728852,
+      "ratio_x1_x2_inAffine": 0.08332869123405956,
+      "batch_size": 16,
+      "learning_rate": 0.000824174243986375,
+      "weight_decay": 4.13614675704622e-06,
+      "weight_y": 0.6655259776544784,
+      "weight_x": 0.6162313882501262,
+      "weight_z": 0.2856052562604183
+    },
+    "state": "COMPLETE"
+  }
+]

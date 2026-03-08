@@ -1,0 +1,2 @@
+Epoch [120/150], Train Loss: 0.024023, Y Loss: 0.011546, X Loss: 0.000628, Z Loss: 0.021302, Time: 1.29s
+          Val Loss: 0.103271, Y Loss: 0.036212, X Loss: 0.002340, Z Loss: 0.159273, Time: 0.33s
